@@ -2,8 +2,6 @@ import * as React from 'react';
 
 import '@mantine/core/styles.css';
 
-import { theme } from '../src/utils/mantine';
-
 import {
   Container,
   MantineProvider,
@@ -12,11 +10,13 @@ import {
 import { addons } from '@storybook/preview-api';
 import { Preview } from '@storybook/react';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
+import { theme } from '~/utils/mantine';
 
 const channel = addons.getChannel();
 
-function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
+function ColorSchemeWrapper({ children }: React.PropsWithChildren) {
   const { setColorScheme } = useMantineColorScheme();
+
   const handleColorScheme = (value: boolean) =>
     setColorScheme(value ? 'dark' : 'light');
 
@@ -25,7 +25,7 @@ function ColorSchemeWrapper({ children }: { children: React.ReactNode }) {
     return () => channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
   }, [channel]);
 
-  return <>{children}</>;
+  return children;
 }
 
 const preview: Preview = {
