@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Response } from '../response';
 import { paginationSchema } from '../validation';
 import { users } from './dummy';
 
@@ -12,8 +13,7 @@ export async function GET(req: NextRequest) {
   const data = users.slice((page - 1) * limit, page * limit);
   const totalPage = Math.ceil(users.length / limit);
   const totalData = users.length;
-
   const meta = { page, totalPage, totalData };
 
-  return NextResponse.json({ data, meta });
+  return Response({ data, meta });
 }

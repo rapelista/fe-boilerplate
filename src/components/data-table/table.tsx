@@ -7,19 +7,28 @@ import {
   TableThead,
   TableTr,
 } from '@mantine/core';
+import { useQuery } from '@tanstack/react-query';
+import { EntityType } from '~/types/core/entity';
+import { PaginatedResponseType } from '~/types/core/response';
 
-const data = [
-  {
-    name: 'John Doe',
-    age: 25,
-  },
-  {
-    name: 'Jane Doe',
-    age: 22,
-  },
-];
+export interface DataTableProps extends TableProps {
+  context: string;
+}
 
-export function DataTable(props: TableProps) {
+export function DataTable<T extends EntityType>({
+  context,
+  ...props
+}: DataTableProps) {
+  const { data } = useQuery<
+    PaginatedResponseType<
+      // TODO: Fix this type.
+      T & {
+        name: string;
+        age: number;
+      }
+    >
+  >({ queryKey: [context] });
+
   return (
     <Table {...props}>
       <TableThead>
@@ -30,7 +39,7 @@ export function DataTable(props: TableProps) {
       </TableThead>
 
       <TableTbody>
-        {data.map((row, key) => (
+        {data?.data.map((row, key) => (
           <TableTr key={key}>
             <TableTd>{row.name}</TableTd>
             <TableTd>{row.age}</TableTd>
