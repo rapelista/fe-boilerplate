@@ -1,0 +1,28 @@
+.table {
+  border-radius: var(--mantine-radius-default);
+  overflow: hidden;
+
+  th,
+  td {
+    padding: 0 1rem;
+  }
+
+  th {
+    font-weight: 500;
+    background-color: var(--table-hover-color);
+    height: 3rem;
+  }
+
+  tbody {
+    font-size: var(--mantine-font-size-xs);
+
+    tr {
+      height: 2.75rem;
+      background-color: var(--table-striped-color);
+
+      &:where(tr):where([data-striped='odd']:nth-of-type(odd)) {
+        background-color: white;
+      }
+    }
+  }
+}
