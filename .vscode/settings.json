@@ -5,5 +5,13 @@
     "**/*.sass",
     "**/*.less",
     "node_modules/@mantine/core/styles.css"
-  ]
+  ],
+
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll.ts": "always"
+  },
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
