@@ -6,7 +6,14 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { theme } from '~/utils/mantine';
 import { getQueryClient } from '~/utils/query';
 
-export function Providers({ children }: React.PropsWithChildren) {
+export interface ProvidersProps extends React.PropsWithChildren {
+  withQueryDevtools?: boolean;
+}
+
+export function Providers({
+  withQueryDevtools = true,
+  children,
+}: ProvidersProps) {
   const client = getQueryClient();
 
   return (
@@ -14,7 +21,7 @@ export function Providers({ children }: React.PropsWithChildren) {
       <QueryClientProvider client={client}>
         {children}
 
-        <ReactQueryDevtools buttonPosition="bottom-left" />
+        {withQueryDevtools && <ReactQueryDevtools initialIsOpen={false} />}
       </QueryClientProvider>
     </MantineProvider>
   );
