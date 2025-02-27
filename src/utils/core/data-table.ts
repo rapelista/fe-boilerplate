@@ -6,4 +6,4 @@ export const defaultParams = {
   search: '',
 };
 
-export const defaultLimitOption = [5, 10, 20, 50, 100];
+export const defaultLimitOptions = [5, 10, 20, 50, 100];

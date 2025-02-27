@@ -1,10 +1,10 @@
 import { Select, SelectProps } from '@mantine/core';
-import { defaultLimitOption } from '~/utils/core/data-table';
+import { defaultLimitOptions } from '~/utils/core/data-table';
 import { useDataTableContext } from './context';
 
 export interface DataTableLimitationProps
   extends Omit<SelectProps, 'data' | 'value' | 'onChange'> {
-  customLimitOption?: number[];
+  customLimitOptions?: number[];
 }
 
 export function DataTableLimitation(props?: DataTableLimitationProps) {
@@ -17,13 +17,13 @@ export function DataTableLimitation(props?: DataTableLimitationProps) {
     }
   };
 
-  const limitOption = props?.customLimitOption
-    ? props.customLimitOption.map(String)
-    : defaultLimitOption.map(String);
+  const limitOptions = props?.customLimitOptions
+    ? props.customLimitOptions.map(String)
+    : defaultLimitOptions.map(String);
 
   return (
     <Select
-      data={limitOption}
+      data={limitOptions}
       value={currentLimit}
       onChange={setLimit}
       {...props}

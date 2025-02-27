@@ -55,11 +55,11 @@ export const Limitation: Story = {
   },
 };
 
-export const LimitationWithCustomOption: Story = {
+export const LimitationWithCustomOptions: Story = {
   args: {
     ...Limitation.args,
     limitationProps: {
-      customLimitOption: [5, 10, 15, 20, 25],
+      customLimitOptions: [5, 10, 15, 20, 25],
     },
   },
 };
