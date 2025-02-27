@@ -5,7 +5,7 @@ import { DataTableContext } from './context';
 
 export interface DataTableProviderProps extends PropsWithChildren {
   context: string;
-  params: ParamsType;
+  params?: ParamsType;
 }
 
 export function DataTableProvider({
