@@ -1,4 +1,6 @@
 import { Button, Container, Group, Stack, Text, Title } from '@mantine/core';
+import { columns } from '~/components/(example)/users/columns';
+import { DataTable } from '~/components/core/data-table';
 
 export default function Page() {
   return (
@@ -16,6 +18,8 @@ export default function Page() {
         <Group>
           <Button>Click Me</Button>
         </Group>
+
+        <DataTable context="users" columns={columns} />
       </Stack>
     </Container>
   );
