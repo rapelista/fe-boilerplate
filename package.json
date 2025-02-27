@@ -7,9 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write .",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@mantine/core": "^7.17.0",
@@ -22,17 +20,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^3.2.4",
     "@eslint/eslintrc": "^3",
     "@faker-js/faker": "^9.5.0",
-    "@storybook/addon-essentials": "^8.6.0",
-    "@storybook/addon-interactions": "^8.6.0",
-    "@storybook/blocks": "^8.6.0",
-    "@storybook/nextjs": "^8.6.0",
-    "@storybook/preview-api": "^8.6.0",
-    "@storybook/react": "^8.6.0",
-    "@storybook/test": "^8.6.0",
-    "@storybook/theming": "^8.6.2",
     "@tanstack/eslint-plugin-query": "^5.66.1",
     "@tanstack/react-query-devtools": "^5.66.9",
     "@types/node": "^20",
@@ -41,20 +30,16 @@
     "eslint": "^9",
     "eslint-config-next": "15.1.7",
     "eslint-config-prettier": "^10.0.1",
-    "eslint-plugin-storybook": "^0.11.3",
     "postcss": "^8.5.3",
     "postcss-preset-mantine": "^1.17.0",
     "postcss-simple-vars": "^7.0.1",
     "prettier": "3.5.2",
-    "storybook": "^8.6.0",
-    "storybook-dark-mode": "^4.0.2",
     "typescript": "^5",
     "webpack": "^5.98.0"
   },
   "packageManager": "pnpm@10.4.1+sha512.c753b6c3ad7afa13af388fa6d808035a008e30ea9993f58c6663e2bc5ff21679aa834db094987129aa4d488b86df57f7b634981b2f827cdcacc698cc0cfb88af",
   "eslintConfig": {
     "extends": [
-      "plugin:storybook/recommended",
       "plugin:@tanstack/query/recommended"
     ]
   }
