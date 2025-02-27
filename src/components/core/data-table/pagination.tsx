@@ -1,19 +1,23 @@
-import { Button } from '@mantine/core';
+import { Pagination, PaginationProps } from '@mantine/core';
 import { useDataTableContext } from './context';
+import { useFetchDataTable } from './hooks';
 
-export function DataTablePagination() {
-  const { params, updateParam } = useDataTableContext();
+export interface DataTablePaginationProps
+  extends Omit<PaginationProps, 'total' | 'value' | 'onChange'> {}
+
+export function DataTablePagination(props: DataTablePaginationProps) {
+  const { context, params, updateParam } = useDataTableContext();
+  const { meta } = useFetchDataTable(context, params);
 
   const currentPage = Number(params.page);
   const setPage = (page: number) => updateParam('page', page);
 
   return (
-    <Button
-      onClick={() => {
-        setPage(currentPage + 1);
-      }}
-    >
-      Next
-    </Button>
+    <Pagination
+      value={currentPage}
+      onChange={setPage}
+      total={meta?.totalPage || 1}
+      {...props}
+    />
   );
 }

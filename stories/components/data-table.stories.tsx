@@ -31,5 +31,12 @@ export const Primary: Story = {};
 export const Pagination: Story = {
   args: {
     withPagination: true,
+    paginationProps: {},
+  },
+};
+
+export const Limitation: Story = {
+  args: {
+    withLimitation: true,
   },
 };

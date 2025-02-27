@@ -5,3 +5,5 @@ export const defaultParams = {
   order: 'ASC',
   search: '',
 };
+
+export const defaultLimitOption = [5, 10, 20, 50, 100];
