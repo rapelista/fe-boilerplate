@@ -1,7 +1,9 @@
 'use client';
 
 import { isServer, QueryClient } from '@tanstack/react-query';
+import { ParamsType } from '~/types/core/uri';
 import { request } from './core/request';
+import { generateUrl } from './core/uri';
 
 function makeQueryClient() {
   return new QueryClient({
@@ -9,8 +11,12 @@ function makeQueryClient() {
       queries: {
         staleTime: 60 * 1000,
         queryFn: async ({ queryKey }) => {
-          const [context] = queryKey as [string];
-          return await request(process.env.NEXT_PUBLIC_API_URL + context);
+          const [context, params] = queryKey as [
+            string,
+            ParamsType | undefined,
+          ];
+
+          return await request(generateUrl(context, params));
         },
       },
     },

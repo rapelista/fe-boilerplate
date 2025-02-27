@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Table,
   TableProps,
@@ -10,13 +12,16 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { EntityType } from '~/types/core/entity';
 import { PaginatedResponseType } from '~/types/core/response';
+import { ParamsType } from '~/types/core/uri';
 
 export interface DataTableProps extends TableProps {
   context: string;
+  params?: ParamsType;
 }
 
 export function DataTable<T extends EntityType>({
   context,
+  params,
   ...props
 }: DataTableProps) {
   const { data } = useQuery<
@@ -27,7 +32,7 @@ export function DataTable<T extends EntityType>({
         age: number;
       }
     >
-  >({ queryKey: [context] });
+  >({ queryKey: [context, params] });
 
   return (
     <Table {...props}>

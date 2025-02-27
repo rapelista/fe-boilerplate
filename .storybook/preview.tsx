@@ -2,11 +2,15 @@ import * as React from 'react';
 
 import '@mantine/core/styles.css';
 
-import { Container, useMantineColorScheme } from '@mantine/core';
+import {
+  Container,
+  MantineProvider,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { addons } from '@storybook/preview-api';
 import { Preview } from '@storybook/react';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
-import { Providers } from '~/components/providers';
+import { theme } from '~/utils/mantine';
 
 const channel = addons.getChannel();
 
@@ -39,9 +43,9 @@ const preview: Preview = {
     },
     (renderStory) => {
       return (
-        <Providers>
+        <MantineProvider theme={theme}>
           <Container py="md">{renderStory()}</Container>
-        </Providers>
+        </MantineProvider>
       );
     },
   ],
