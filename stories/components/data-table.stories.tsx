@@ -6,17 +6,17 @@ import { DataTable, DataTableProps } from '~/components/core/data-table';
 import { UserType } from '~/types/(example)/users';
 import { getQueryClient } from '~/utils/query';
 
+const withQueryClientProvider = (renderStory: () => React.ReactElement) => (
+  <QueryClientProvider client={getQueryClient()}>
+    {renderStory()}
+    <ReactQueryDevtools buttonPosition="bottom-left" />
+  </QueryClientProvider>
+);
+
 export default {
   component: DataTable,
   title: 'Components/Data Table',
-  decorators: [
-    (renderStory) => (
-      <QueryClientProvider client={getQueryClient()}>
-        {renderStory()}
-        <ReactQueryDevtools buttonPosition="bottom-left" />
-      </QueryClientProvider>
-    ),
-  ],
+  decorators: [withQueryClientProvider],
   args: {
     context: 'users',
     params: {},
