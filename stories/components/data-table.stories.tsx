@@ -49,6 +49,18 @@ export const Limitation: Story = {
   args: {
     withLimitation: true,
     limitationProps: {},
+    bottomSectionProps: {
+      justify: 'flex-end',
+    },
+  },
+};
+
+export const LimitationWithCustomOption: Story = {
+  args: {
+    ...Limitation.args,
+    limitationProps: {
+      customLimitOption: [5, 10, 15, 20, 25],
+    },
   },
 };
 
@@ -57,8 +69,6 @@ export const FullFeature: Story = {
     ...Search.args,
     ...Pagination.args,
     ...Limitation.args,
-    bottomSectionProps: {
-      justify: 'space-between',
-    },
+    bottomSectionProps: { justify: 'space-between' },
   },
 };

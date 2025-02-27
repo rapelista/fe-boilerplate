@@ -3,7 +3,9 @@ import { defaultLimitOption } from '~/utils/core/data-table';
 import { useDataTableContext } from './context';
 
 export interface DataTableLimitationProps
-  extends Omit<SelectProps, 'data' | 'value' | 'onChange'> {}
+  extends Omit<SelectProps, 'data' | 'value' | 'onChange'> {
+  customLimitOption?: number[];
+}
 
 export function DataTableLimitation(props?: DataTableLimitationProps) {
   const { params, updateParam } = useDataTableContext();
@@ -15,9 +17,13 @@ export function DataTableLimitation(props?: DataTableLimitationProps) {
     }
   };
 
+  const limitOption = props?.customLimitOption
+    ? props.customLimitOption.map(String)
+    : defaultLimitOption.map(String);
+
   return (
     <Select
-      data={defaultLimitOption.map((option) => option.toString())}
+      data={limitOption}
       value={currentLimit}
       onChange={setLimit}
       {...props}
