@@ -1,11 +1,11 @@
 'use client';
 
-import { Group, Stack } from '@mantine/core';
+import { Group, GroupProps, Stack } from '@mantine/core';
 import { EntityType } from '~/types/core/entity';
 import { DataTableLimitation, DataTableLimitationProps } from './limitation';
 import { DataTablePagination, DataTablePaginationProps } from './pagination';
 import { DataTableProvider, DataTableProviderProps } from './provider';
-import { DataTableSearch } from './search';
+import { DataTableSearch, DataTableSearchProps } from './search';
 import { DataTableUI, DataTableUIProps } from './ui';
 
 export interface DataTableProps<T>
@@ -20,14 +20,29 @@ export interface DataTableProps<T>
 export interface DataTableComponentProps {
   paginationProps?: DataTablePaginationProps;
   limitationProps?: DataTableLimitationProps;
+  searchProps?: DataTableSearchProps;
+  bottomSectionProps?: GroupProps;
 }
 
 export function DataTable<T extends EntityType>({
+  /**
+   * Component Visibility
+   */
   withPagination = false,
   withLimitation = false,
   withSearch = false,
+
+  /**
+   * Componenet Props
+   */
   paginationProps,
   limitationProps,
+  searchProps,
+  bottomSectionProps,
+
+  /**
+   * Rest props a.k.a DataTableUIProps
+   */
   ...props
 }: DataTableProps<T>) {
   return (
@@ -36,7 +51,7 @@ export function DataTable<T extends EntityType>({
         {/**
          * Top Section
          */}
-        <Group>{withSearch && <DataTableSearch />}</Group>
+        <Group>{withSearch && <DataTableSearch {...searchProps} />}</Group>
 
         {/**
          * Main Table Section
@@ -46,7 +61,7 @@ export function DataTable<T extends EntityType>({
         {/**
          * Bottom Section
          */}
-        <Group>
+        <Group {...bottomSectionProps}>
           {withPagination && <DataTablePagination {...paginationProps} />}
           {withLimitation && <DataTableLimitation {...limitationProps} />}
         </Group>

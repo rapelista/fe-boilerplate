@@ -28,6 +28,16 @@ type Story = StoryObj<DataTableProps<UserType>>;
 
 export const Primary: Story = {};
 
+export const Search: Story = {
+  args: {
+    withSearch: true,
+    searchProps: {
+      flex: 1,
+      placeholder: 'Search something...',
+    },
+  },
+};
+
 export const Pagination: Story = {
   args: {
     withPagination: true,
@@ -38,5 +48,17 @@ export const Pagination: Story = {
 export const Limitation: Story = {
   args: {
     withLimitation: true,
+    limitationProps: {},
+  },
+};
+
+export const FullFeature: Story = {
+  args: {
+    ...Search.args,
+    ...Pagination.args,
+    ...Limitation.args,
+    bottomSectionProps: {
+      justify: 'space-between',
+    },
   },
 };
