@@ -3,7 +3,10 @@ import * as React from 'react';
 import '@mantine/core/styles.css';
 
 import type { Preview } from '@storybook/react';
+import { initialize, mswLoader } from 'msw-storybook-addon';
 import { Providers } from '../src/components/providers';
+
+initialize();
 
 const preview: Preview = {
   parameters: {
@@ -16,11 +19,12 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <Providers withQueryDevtools={false}>
+      <Providers>
         <Story />
       </Providers>
     ),
   ],
+  loaders: [mswLoader],
 };
 
 export default preview;
