@@ -13,7 +13,10 @@ export function DataTableLimitation(props?: DataTableLimitationProps) {
   const currentLimit = String(params.limit);
   const setLimit = (limit: null | string) => {
     if (limit) {
-      updateParam('limit', Number(limit));
+      const numericLimit = Number(limit);
+      if (!isNaN(numericLimit) && numericLimit > 0) {
+        updateParam('limit', numericLimit);
+      }
     }
   };
 
