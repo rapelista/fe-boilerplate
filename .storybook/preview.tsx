@@ -7,8 +7,10 @@ import {
   MantineProvider,
   useMantineColorScheme,
 } from '@mantine/core';
+import { DocsContainer, DocsContainerProps } from '@storybook/blocks';
 import { addons } from '@storybook/preview-api';
 import { Preview } from '@storybook/react';
+import { themes } from '@storybook/theming';
 import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
 import { theme } from '~/utils/mantine';
 
@@ -34,6 +36,25 @@ const preview: Preview = {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
+      },
+    },
+    docs: {
+      container: (props: DocsContainerProps) => {
+        const [isDark, setIsDark] = React.useState(false);
+
+        const handleColorScheme = (value: boolean) => setIsDark(value);
+
+        React.useEffect(() => {
+          channel.on(DARK_MODE_EVENT_NAME, handleColorScheme);
+          return () => channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
+        }, [channel]);
+
+        return (
+          <DocsContainer
+            {...props}
+            theme={isDark ? themes.dark : themes.light}
+          />
+        );
       },
     },
   },

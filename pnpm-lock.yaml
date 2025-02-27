@@ -63,6 +63,9 @@ importers:
       '@storybook/test':
         specifier: ^8.6.0
         version: 8.6.0(storybook@8.6.0(prettier@3.5.2))
+      '@storybook/theming':
+        specifier: ^8.6.2
+        version: 8.6.2(storybook@8.6.0(prettier@3.5.2))
       '@tanstack/eslint-plugin-query':
         specifier: ^5.66.1
         version: 5.66.1(eslint@9.21.0(jiti@1.21.7))(typescript@5.7.3)
@@ -1358,6 +1361,11 @@ packages:
 
   '@storybook/theming@8.6.0':
     resolution: {integrity: sha512-te7dl0ZXnEyKS4LW+QHc3MP7nurWhWhmClY7G2WKNW9eHenb9zvXkcAQt6c4OWhrJi01CAYoXmZNJP0jEzxRRQ==}
+    peerDependencies:
+      storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
+
+  '@storybook/theming@8.6.2':
+    resolution: {integrity: sha512-NF7tMZBbmh6rNf+uw5wVUpsVIwnbhLgauhQJONuQ8i+cI6cJEBaKjIC2uMWUBABqnj1LqGrHSEWVeeYwuAeUYg==}
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
 
@@ -5585,6 +5593,10 @@ snapshots:
     dependencies:
       storybook: 8.6.0(prettier@3.5.2)
 
+  '@storybook/theming@8.6.2(storybook@8.6.0(prettier@3.5.2))':
+    dependencies:
+      storybook: 8.6.0(prettier@3.5.2)
+
   '@swc/counter@0.1.3': {}
 
   '@swc/helpers@0.5.15':
@@ -8365,7 +8377,7 @@ snapshots:
       '@storybook/global': 5.0.0
       '@storybook/icons': 1.3.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@storybook/manager-api': 8.6.0(storybook@8.6.0(prettier@3.5.2))
-      '@storybook/theming': 8.6.0(storybook@8.6.0(prettier@3.5.2))
+      '@storybook/theming': 8.6.2(storybook@8.6.0(prettier@3.5.2))
       fast-deep-equal: 3.1.3
       memoizerific: 1.11.3
     transitivePeerDependencies:

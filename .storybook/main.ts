@@ -7,7 +7,7 @@ const config: StorybookConfig = {
     {
       name: '@storybook/addon-essentials',
       options: {
-        docs: false,
+        docs: true,
       },
     },
     '@chromatic-com/storybook',
@@ -19,6 +19,9 @@ const config: StorybookConfig = {
     options: {},
   },
   staticDirs: ['../public'],
+  docs: {
+    defaultName: 'Documentation',
+  },
   webpackFinal: async (config) => {
     if (!config?.plugins) {
       return config;

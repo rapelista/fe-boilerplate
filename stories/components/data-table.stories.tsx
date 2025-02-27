@@ -14,6 +14,7 @@ const withQueryClientProvider = (renderStory: () => React.ReactElement) => (
 );
 
 export default {
+  tags: ['autodocs'],
   component: DataTable,
   title: 'Components/Data Table',
   decorators: [withQueryClientProvider],
