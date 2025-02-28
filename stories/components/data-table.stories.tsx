@@ -70,3 +70,19 @@ export const FullFeature: Story = {
     },
   },
 };
+
+export const WithActions: Story = {
+  args: {
+    actions: [
+      {
+        type: 'modal',
+        label: 'View',
+      },
+      {
+        type: 'link',
+        href: '/users',
+        label: 'Edit',
+      },
+    ],
+  },
+};
