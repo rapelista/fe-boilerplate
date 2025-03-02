@@ -2,6 +2,7 @@ import { Container } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
 import { IconEye, IconPencil } from '@tabler/icons-react';
 import { DataTable } from '~/components/core/data-table';
+import { WithReactQuery } from '../decorators/query';
 import { DATA_TABLE_MOCK } from './data-table.mock';
 
 export default {
@@ -22,6 +23,11 @@ export default {
     ],
   },
   decorators: [
+    (Story) => (
+      <WithReactQuery>
+        <Story />
+      </WithReactQuery>
+    ),
     (Story) => (
       <Container my="md">
         <Story />
