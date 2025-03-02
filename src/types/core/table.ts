@@ -6,6 +6,7 @@ import { LinkProps } from 'next/link';
  */
 export interface ActionProps {
   label: string;
+  type: string;
 }
 
 /**

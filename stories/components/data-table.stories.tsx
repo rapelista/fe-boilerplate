@@ -1,5 +1,6 @@
 import { Container } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
+import { IconEye, IconPencil } from '@tabler/icons-react';
 import { DataTable } from '~/components/core/data-table';
 import { DATA_TABLE_MOCK } from './data-table.mock';
 
@@ -60,6 +61,23 @@ export const Limitation: Story = {
   },
 };
 
+export const WithActions: Story = {
+  args: {
+    actions: [
+      {
+        type: 'modal',
+        label: 'View',
+        leftSection: <IconEye />,
+      },
+      {
+        type: 'modal',
+        label: 'Edit',
+        leftSection: <IconPencil />,
+      },
+    ],
+  },
+};
+
 export const FullFeature: Story = {
   args: {
     ...Search.args,
@@ -68,21 +86,5 @@ export const FullFeature: Story = {
     bottomSectionProps: {
       justify: 'space-between',
     },
-  },
-};
-
-export const WithActions: Story = {
-  args: {
-    actions: [
-      {
-        type: 'modal',
-        label: 'View',
-      },
-      {
-        type: 'link',
-        href: '/users',
-        label: 'Edit',
-      },
-    ],
   },
 };
