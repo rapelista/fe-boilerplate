@@ -7,7 +7,7 @@ import '@mantine/notifications/styles.css';
 
 import type { Preview } from '@storybook/react';
 import { initialize, mswLoader } from 'msw-storybook-addon';
-import { Providers } from '../src/components/providers';
+import { WithMantine } from '../stories/decorators/mantine';
 
 initialize();
 
@@ -22,9 +22,9 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <Providers withQueryDevtools={false}>
+      <WithMantine>
         <Story />
-      </Providers>
+      </WithMantine>
     ),
   ],
   loaders: [mswLoader],
