@@ -1,6 +1,7 @@
 import { http, HttpResponse } from 'msw';
 import { paginationSchema } from '../utils/validation';
 
+import { delay } from '~/utils/core/misc';
 import { faker } from '~/utils/faker';
 
 const users = Array.from({ length: 100 }).map((_, i) => ({
@@ -11,7 +12,9 @@ const users = Array.from({ length: 100 }).map((_, i) => ({
 
 export const DATA_TABLE_MOCK = http.get(
   'http://localhost:3000/api/v1/users',
-  ({ request }) => {
+  async ({ request }) => {
+    await delay();
+
     const url = new URL(request.url);
     const params = Object.fromEntries(url.searchParams);
 
