@@ -34,7 +34,7 @@ export default {
       </Container>
     ),
   ],
-} satisfies Meta;
+} satisfies Meta<typeof DataTable>;
 
 type Story = StoryObj<typeof DataTable>;
 
