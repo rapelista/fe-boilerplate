@@ -3,6 +3,7 @@ import * as React from 'react';
 import '~/styles/globals.css';
 
 import '@mantine/core/styles.css';
+import '@mantine/notifications/styles.css';
 
 import type { Preview } from '@storybook/react';
 import { initialize, mswLoader } from 'msw-storybook-addon';
@@ -21,7 +22,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <Providers>
+      <Providers withQueryDevtools={false}>
         <Story />
       </Providers>
     ),

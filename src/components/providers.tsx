@@ -1,6 +1,7 @@
 'use client';
 
 import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { theme } from '~/utils/mantine';
@@ -23,6 +24,8 @@ export function Providers({
 
         {withQueryDevtools && <ReactQueryDevtools initialIsOpen={false} />}
       </QueryClientProvider>
+
+      <Notifications />
     </MantineProvider>
   );
 }
