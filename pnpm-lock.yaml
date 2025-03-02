@@ -42,6 +42,9 @@ importers:
       '@faker-js/faker':
         specifier: ^9.5.0
         version: 9.5.0
+      '@next/eslint-plugin-next':
+        specifier: ^15.2.0
+        version: 15.2.0
       '@storybook/addon-essentials':
         specifier: ^8.6.2
         version: 8.6.2(@types/react@19.0.10)(storybook@8.6.2(prettier@3.5.2))
@@ -84,6 +87,9 @@ importers:
       '@types/react-dom':
         specifier: ^19
         version: 19.0.4(@types/react@19.0.10)
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.25.0
+        version: 8.25.0(@typescript-eslint/parser@8.25.0(eslint@9.21.0(jiti@1.21.7))(typescript@5.7.3))(eslint@9.21.0(jiti@1.21.7))(typescript@5.7.3)
       '@vitest/browser':
         specifier: ^3.0.7
         version: 3.0.7(@types/node@20.17.19)(playwright@1.50.1)(typescript@5.7.3)(vite@6.2.0(@types/node@20.17.19)(jiti@1.21.7)(sugarss@4.0.1(postcss@8.5.3))(terser@5.39.0))(vitest@3.0.7)
@@ -99,6 +105,9 @@ importers:
       eslint-config-prettier:
         specifier: ^10.0.1
         version: 10.0.1(eslint@9.21.0(jiti@1.21.7))
+      eslint-plugin-react-hooks:
+        specifier: ^5.2.0
+        version: 5.2.0(eslint@9.21.0(jiti@1.21.7))
       eslint-plugin-storybook:
         specifier: ^0.11.3
         version: 0.11.3(eslint@9.21.0(jiti@1.21.7))(typescript@5.7.3)
@@ -1149,6 +1158,9 @@ packages:
 
   '@next/eslint-plugin-next@15.1.7':
     resolution: {integrity: sha512-kRP7RjSxfTO13NE317ek3mSGzoZlI33nc/i5hs1KaWpK+egs85xg0DJ4p32QEiHnR0mVjuUfhRIun7awqfL7pQ==}
+
+  '@next/eslint-plugin-next@15.2.0':
+    resolution: {integrity: sha512-jHFUG2OwmAuOASqq253RAEG/5BYcPHn27p1NoWZDCf4OdvdK0yRYWX92YKkL+Mk2s+GyJrmd/GATlL5b2IySpw==}
 
   '@next/swc-darwin-arm64@15.1.7':
     resolution: {integrity: sha512-hPFwzPJDpA8FGj7IKV3Yf1web3oz2YsR8du4amKw8d+jAOHfYHYFpMkoF6vgSY4W6vB29RtZEklK9ayinGiCmQ==}
@@ -2667,8 +2679,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9
 
-  eslint-plugin-react-hooks@5.1.0:
-    resolution: {integrity: sha512-mpJRtPgHN2tNAvZ35AMfqeB3Xqeo273QxrHJsbBEPWODRM4r0yB6jfoROqKEYrOn27UtRPpcpHc2UqyBSuUNTw==}
+  eslint-plugin-react-hooks@5.2.0:
+    resolution: {integrity: sha512-+f15FfK64YQwZdJNELETdn5ibXEUQmW1DZL6KXhNnc2heoy/sg9VJJeT7n8TlMWouzWqSWavFkIhHyIbIAEapg==}
     engines: {node: '>=10'}
     peerDependencies:
       eslint: ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0-0 || ^9.0.0
@@ -5950,6 +5962,10 @@ snapshots:
     dependencies:
       fast-glob: 3.3.1
 
+  '@next/eslint-plugin-next@15.2.0':
+    dependencies:
+      fast-glob: 3.3.1
+
   '@next/swc-darwin-arm64@15.1.7':
     optional: true
 
@@ -7750,7 +7766,7 @@ snapshots:
       eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.25.0(eslint@9.21.0(jiti@1.21.7))(typescript@5.7.3))(eslint-import-resolver-typescript@3.8.3)(eslint@9.21.0(jiti@1.21.7))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.21.0(jiti@1.21.7))
       eslint-plugin-react: 7.37.4(eslint@9.21.0(jiti@1.21.7))
-      eslint-plugin-react-hooks: 5.1.0(eslint@9.21.0(jiti@1.21.7))
+      eslint-plugin-react-hooks: 5.2.0(eslint@9.21.0(jiti@1.21.7))
     optionalDependencies:
       typescript: 5.7.3
     transitivePeerDependencies:
@@ -7844,7 +7860,7 @@ snapshots:
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-react-hooks@5.1.0(eslint@9.21.0(jiti@1.21.7)):
+  eslint-plugin-react-hooks@5.2.0(eslint@9.21.0(jiti@1.21.7)):
     dependencies:
       eslint: 9.21.0(jiti@1.21.7)
 
