@@ -1,30 +1,35 @@
+import { Container } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { columns } from '~/components/(example)/users/columns';
-import { DataTable, DataTableProps } from '~/components/core/data-table';
-import { UserType } from '~/types/(example)/users';
-import { getQueryClient } from '~/utils/query';
-
-const withQueryClientProvider = (renderStory: () => React.ReactElement) => (
-  <QueryClientProvider client={getQueryClient()}>
-    {renderStory()}
-    <ReactQueryDevtools buttonPosition="bottom-left" />
-  </QueryClientProvider>
-);
+import { DataTable } from '~/components/core/data-table';
+import { DATA_TABLE_MOCK } from './data-table.mock';
 
 export default {
-  component: DataTable,
   title: 'Components/Data Table',
-  decorators: [withQueryClientProvider],
+  component: DataTable,
+  parameters: { msw: { handlers: [DATA_TABLE_MOCK] } },
   args: {
     context: 'users',
-    params: {},
-    columns: columns,
+    columns: [
+      {
+        accessorKey: 'name',
+        header: 'Name',
+      },
+      {
+        accessorKey: 'age',
+        header: 'Age',
+      },
+    ],
   },
+  decorators: [
+    (Story) => (
+      <Container my="md">
+        <Story />
+      </Container>
+    ),
+  ],
 } satisfies Meta;
 
-type Story = StoryObj<DataTableProps<UserType>>;
+type Story = StoryObj<typeof DataTable>;
 
 export const Primary: Story = {};
 
@@ -55,20 +60,29 @@ export const Limitation: Story = {
   },
 };
 
-export const LimitationWithCustomOptions: Story = {
-  args: {
-    ...Limitation.args,
-    limitationProps: {
-      customLimitOptions: [5, 10, 15, 20, 25],
-    },
-  },
-};
-
 export const FullFeature: Story = {
   args: {
     ...Search.args,
     ...Pagination.args,
     ...Limitation.args,
-    bottomSectionProps: { justify: 'space-between' },
+    bottomSectionProps: {
+      justify: 'space-between',
+    },
+  },
+};
+
+export const WithActions: Story = {
+  args: {
+    actions: [
+      {
+        type: 'modal',
+        label: 'View',
+      },
+      {
+        type: 'link',
+        href: '/users',
+        label: 'Edit',
+      },
+    ],
   },
 };

@@ -7,6 +7,8 @@
     "node_modules/@mantine/core/styles.css"
   ],
 
+  "eslint.useFlatConfig": true,
+
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",

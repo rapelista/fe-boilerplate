@@ -8,7 +8,7 @@ export function useFetchDataTable<T extends EntityType>(
   context: string,
   params: ParamsType,
 ) {
-  const { data: response, ...rest } = useQuery<PaginatedResponseType<T>>({
+  const { data: response } = useQuery<PaginatedResponseType<T>>({
     queryKey: [context, params],
     placeholderData: keepPreviousData,
   });
@@ -21,5 +21,5 @@ export function useFetchDataTable<T extends EntityType>(
     return response?.meta;
   }, [response]);
 
-  return { data, meta, ...rest };
+  return { data, meta };
 }

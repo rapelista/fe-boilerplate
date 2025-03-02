@@ -2,31 +2,11 @@ import * as React from 'react';
 
 import '@mantine/core/styles.css';
 
-import {
-  Container,
-  MantineProvider,
-  useMantineColorScheme,
-} from '@mantine/core';
-import { addons } from '@storybook/preview-api';
-import { Preview } from '@storybook/react';
-import { DARK_MODE_EVENT_NAME } from 'storybook-dark-mode';
-import { theme } from '~/utils/mantine';
+import type { Preview } from '@storybook/react';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+import { Providers } from '../src/components/providers';
 
-const channel = addons.getChannel();
-
-function ColorSchemeWrapper({ children }: React.PropsWithChildren) {
-  const { setColorScheme } = useMantineColorScheme();
-
-  const handleColorScheme = (value: boolean) =>
-    setColorScheme(value ? 'dark' : 'light');
-
-  React.useEffect(() => {
-    channel.on(DARK_MODE_EVENT_NAME, handleColorScheme);
-    return () => channel.off(DARK_MODE_EVENT_NAME, handleColorScheme);
-  }, [channel]);
-
-  return children;
-}
+initialize();
 
 const preview: Preview = {
   parameters: {
@@ -38,17 +18,13 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (renderStory) => {
-      return <ColorSchemeWrapper>{renderStory()}</ColorSchemeWrapper>;
-    },
-    (renderStory) => {
-      return (
-        <MantineProvider theme={theme}>
-          <Container py="md">{renderStory()}</Container>
-        </MantineProvider>
-      );
-    },
+    (Story) => (
+      <Providers>
+        <Story />
+      </Providers>
+    ),
   ],
+  loaders: [mswLoader],
 };
 
 export default preview;

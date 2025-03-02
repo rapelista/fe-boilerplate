@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "./.storybook/preview.tsx"
+    "./.stories/preview.tsx"
   ],
   "exclude": ["node_modules"]
 }

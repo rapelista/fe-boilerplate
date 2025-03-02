@@ -7,7 +7,10 @@ export interface DataTableLimitationProps
   customLimitOptions?: number[];
 }
 
-export function DataTableLimitation(props?: DataTableLimitationProps) {
+export function DataTableLimitation({
+  customLimitOptions,
+  ...props
+}: DataTableLimitationProps) {
   const { params, updateParam } = useDataTableContext();
 
   const currentLimit = String(params.limit);
@@ -20,8 +23,8 @@ export function DataTableLimitation(props?: DataTableLimitationProps) {
     }
   };
 
-  const limitOptions = props?.customLimitOptions
-    ? props.customLimitOptions.map(String)
+  const limitOptions = customLimitOptions
+    ? customLimitOptions.map(String)
     : defaultLimitOptions.map(String);
 
   return (
