@@ -23,7 +23,7 @@ import { useFetchDataTable } from './hooks';
 
 export interface DataTableUIProps<T>
   extends TableProps,
-    DataTableActionsProps<T> {
+    Pick<DataTableActionsProps<T>, 'actions'> {
   columns: ColumnDef<T>[];
 }
 
