@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import '~/styles/globals.css';
+
 import '@mantine/core/styles.css';
 
 import type { Preview } from '@storybook/react';
