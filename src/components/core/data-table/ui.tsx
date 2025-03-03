@@ -20,7 +20,6 @@ import { EntityType } from '~/types/core/entity';
 import { DataTableActions, DataTableActionsProps } from './actions';
 import { useDataTableContext } from './context';
 import { useFetchDataTable } from './hooks';
-import { DataTableOverlay } from './overlay';
 import { DataTableSkeleton, DataTableSkeletonProps } from './skeleton';
 
 export interface DataTableUIProps<T>
@@ -37,7 +36,7 @@ export function DataTableUI<T extends EntityType>({
   ...props
 }: DataTableUIProps<T>) {
   const { context, params } = useDataTableContext();
-  const { data, isPending, isFetching } = useFetchDataTable<T>(context, params);
+  const { data, isPending } = useFetchDataTable<T>(context, params);
 
   const columns = useMemo(() => {
     if (initialActions.length > 0) {
@@ -83,8 +82,6 @@ export function DataTableUI<T extends EntityType>({
         ))}
       </TableThead>
 
-      {!isPending && isFetching && <DataTableOverlay />}
-
       <TableTbody pos="relative">
         {isPending ? (
           <DataTableSkeleton
@@ -92,6 +89,12 @@ export function DataTableUI<T extends EntityType>({
             rows={Number(params.limit)}
             {...skeletonProps}
           />
+        ) : table.getRowModel().rows.length === 0 ? (
+          <TableTr>
+            <TableTd h={100} ta="center" colSpan={columns.length}>
+              No data available
+            </TableTd>
+          </TableTr>
         ) : (
           table.getRowModel().rows.map((row) => (
             <TableTr key={row.id}>
