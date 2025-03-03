@@ -72,6 +72,32 @@ following resources:
 - [React Table Documentation](https://tanstack.com/table/latest/docs/overview)
 - [Zod Documentation](https://zod.dev/)
 
+## Storybook
+
+This project includes Storybook for developing and testing UI components in
+isolation.
+
+### Start Storybook
+
+1. Make sure you have installed dependencies:
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+2. Start Storybook:
+
+```bash
+npm run storybook
+# or
+pnpm storybook
+```
+
+Open [http://localhost:6006](http://localhost:6006) with your browser to view
+the Storybook interface.
+
 ## Contributing
 
 Contributions are welcome! Please open an issue or submit a pull request for any
