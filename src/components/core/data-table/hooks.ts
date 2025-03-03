@@ -15,21 +15,6 @@ export function useFetchDataTable<T extends EntityType>(
     isPlaceholderData,
   } = useQuery<PaginatedResponseType<T>>({
     queryKey: [context, params],
-    // placeholderData: (data) =>
-    //   data
-    //     ? keepPreviousData(data)
-    //     : ({
-    //         data: Array.from({ length: Number(params?.limit || 10) }).map(
-    //           (_, key) => ({
-    //             id: key,
-    //           }),
-    //         ),
-    //         meta: {
-    //           page: 1,
-    //           totalData: 0,
-    //           totalPage: 0,
-    //         },
-    //       } as PaginatedResponseType<T>),
     placeholderData: keepPreviousData,
   });
 
