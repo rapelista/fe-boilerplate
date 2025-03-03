@@ -56,9 +56,10 @@ result.
 
 - `app/`: Contains the application's pages.
 - `components/`: Contains reusable React components.
+- `configs/`: Contains custom configs.
 - `styles/`: Contains global styles and CSS modules.
+- `types/`: Contains type declarations.
 - `utils/`: Contains utility functions and helpers.
-- `hooks/`: Contains custom React hooks.
 
 ## Learn More
 
