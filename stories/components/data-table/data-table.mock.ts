@@ -9,6 +9,28 @@ const users = Array.from({ length: 100 }).map((_, i) => ({
   age: faker.number.int({ min: 17, max: 100 }),
 }));
 
+export const DATA_TABLE_ERROR_MOCK = http.get(
+  'http://localhost:3000/api/v1/users',
+  async () => {
+    await delay();
+
+    return HttpResponse.json(
+      {
+        type: 'client_error',
+        errors: [
+          {
+            code: 'not_authenticated',
+            detail: 'Authentication credentials not provided.',
+            attr: null,
+          },
+        ],
+        timestamp: new Date().toISOString(),
+      },
+      { status: 401 },
+    );
+  },
+);
+
 export const DATA_TABLE_MOCK = http.get(
   'http://localhost:3000/api/v1/users',
   async ({ request }) => {
@@ -37,5 +59,20 @@ export const DATA_TABLE_MOCK = http.get(
     const meta = { page, totalPage, totalData };
 
     return HttpResponse.json({ data, meta });
+
+    // return HttpResponse.json(
+    //   {
+    //     type: 'client_error',
+    //     errors: [
+    //       {
+    //         code: 'unauthorized',
+    //         message: 'Unauthorized',
+    //         attr: null,
+    //       },
+    //     ],
+    //     timestamp: new Date().toISOString(),
+    //   },
+    //   { status: 401 },
+    // );
   },
 );

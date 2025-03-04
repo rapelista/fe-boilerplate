@@ -1,9 +1,9 @@
-import { Container } from '@mantine/core';
+import { Container, Stack, Text } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
 import { IconEye, IconPencil } from '@tabler/icons-react';
 import { DataTable } from '~/components/core/data-table';
 import { WithReactQuery } from '../../decorators/query';
-import { DATA_TABLE_MOCK } from './data-table.mock';
+import { DATA_TABLE_ERROR_MOCK, DATA_TABLE_MOCK } from './data-table.mock';
 import { UserModal, UserViewModal } from './data-table.modals';
 
 export default {
@@ -12,6 +12,9 @@ export default {
   component: DataTable,
   parameters: { msw: { handlers: [DATA_TABLE_MOCK] } },
   args: {
+    messages: {
+      empty: 'No users found. Maybe you should create one',
+    },
     context: 'users',
     columns: [
       {
@@ -107,4 +110,22 @@ export const FullFeature: Story = {
       justify: 'space-between',
     },
   },
+};
+
+export const WhenError: Story = {
+  args: {
+    messages: {
+      error: 'An error occured! Maybe you should refresh this page',
+    },
+  },
+  parameters: { msw: { handlers: [DATA_TABLE_ERROR_MOCK] } },
+  decorators: [
+    (Story) => (
+      <Stack>
+        <Text fz="xs">*Maybe you should refresh this page</Text>
+
+        <Story />
+      </Stack>
+    ),
+  ],
 };
