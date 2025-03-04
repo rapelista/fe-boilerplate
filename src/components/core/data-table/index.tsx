@@ -1,6 +1,7 @@
 'use client';
 
 import { Group, GroupProps, Stack } from '@mantine/core';
+import { ModalsProvider, ModalsProviderProps } from '@mantine/modals';
 import { EntityType } from '~/types/core/entity';
 import { DataTableLimitation, DataTableLimitationProps } from './limitation';
 import { DataTablePagination, DataTablePaginationProps } from './pagination';
@@ -11,7 +12,8 @@ import { DataTableUI, DataTableUIProps } from './ui';
 export interface DataTableProps<T>
   extends DataTableUIProps<T>,
     DataTableProviderProps,
-    DataTableComponentProps {
+    DataTableComponentProps,
+    Pick<ModalsProviderProps, 'modals'> {
   withPagination?: boolean;
   withLimitation?: boolean;
   withSearch?: boolean;
@@ -40,32 +42,36 @@ export function DataTable<T extends EntityType>({
   searchProps,
   bottomSectionProps,
 
+  modals,
+
   /**
    * Rest props a.k.a DataTableUIProps
    */
   ...props
 }: DataTableProps<T>) {
   return (
-    <DataTableProvider context={props.context} params={props.params}>
-      <Stack>
-        {/**
-         * Top Section
-         */}
-        <Group>{withSearch && <DataTableSearch {...searchProps} />}</Group>
+    <ModalsProvider modals={modals}>
+      <DataTableProvider context={props.context} params={props.params}>
+        <Stack>
+          {/**
+           * Top Section
+           */}
+          <Group>{withSearch && <DataTableSearch {...searchProps} />}</Group>
 
-        {/**
-         * Main Table Section
-         */}
-        <DataTableUI {...props} />
+          {/**
+           * Main Table Section
+           */}
+          <DataTableUI {...props} />
 
-        {/**
-         * Bottom Section
-         */}
-        <Group {...bottomSectionProps}>
-          {withPagination && <DataTablePagination {...paginationProps} />}
-          {withLimitation && <DataTableLimitation {...limitationProps} />}
-        </Group>
-      </Stack>
-    </DataTableProvider>
+          {/**
+           * Bottom Section
+           */}
+          <Group {...bottomSectionProps}>
+            {withPagination && <DataTablePagination {...paginationProps} />}
+            {withLimitation && <DataTableLimitation {...limitationProps} />}
+          </Group>
+        </Stack>
+      </DataTableProvider>
+    </ModalsProvider>
   );
 }

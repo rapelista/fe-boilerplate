@@ -4,6 +4,7 @@ import { IconEye, IconPencil } from '@tabler/icons-react';
 import { DataTable } from '~/components/core/data-table';
 import { WithReactQuery } from '../decorators/query';
 import { DATA_TABLE_MOCK } from './data-table.mock';
+import { UserModal, UserViewModal } from './data-table.modals';
 
 export default {
   title: 'Components/Data Table',
@@ -69,16 +70,28 @@ export const Limitation: Story = {
 
 export const WithActions: Story = {
   args: {
+    modals: {
+      user: UserModal,
+      user_view: UserViewModal,
+    },
     actions: [
       {
         type: 'modal',
         label: 'View',
         leftSection: <IconEye />,
+        modal: 'user_view',
+        modalProps: {
+          title: 'View User',
+        },
       },
       {
         type: 'modal',
         label: 'Edit',
         leftSection: <IconPencil />,
+        modal: 'user',
+        modalProps: {
+          title: 'Edit User',
+        },
       },
     ],
   },

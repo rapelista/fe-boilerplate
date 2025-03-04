@@ -1,4 +1,5 @@
 import { Button, Group, MantineProvider } from '@mantine/core';
+import { modals } from '@mantine/modals';
 import Link from 'next/link';
 import { ActionType } from '~/types/core/table';
 
@@ -7,13 +8,26 @@ export interface DataTableActionsProps<T> {
   row: T;
 }
 
-export function DataTableActions<T>({ actions }: DataTableActionsProps<T>) {
+export function DataTableActions<T>({
+  actions,
+  row,
+}: DataTableActionsProps<T>) {
   const renderActions = (action: ActionType, key: number) => {
     if (action.type === 'modal') {
-      const { type: _t, label, ...props } = action;
+      const { type: _t, label, modal, modalProps, ...props } = action;
 
       return (
-        <Button key={key} {...props}>
+        <Button
+          key={key}
+          onClick={() => {
+            modals.openContextModal({
+              modal,
+              innerProps: { row },
+              ...modalProps,
+            });
+          }}
+          {...props}
+        >
           {label}
         </Button>
       );
