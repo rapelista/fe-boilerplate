@@ -33,6 +33,7 @@ function Toast({
 }
 
 export default {
+  tags: ['!autodocs'],
   title: 'Components/Toast',
   component: Toast,
 } satisfies Meta;
