@@ -24,13 +24,13 @@ quickly and efficiently.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/boilerplate-v15.git
+git clone https://github.com/rapelista/nextjs-v15-boilerplate.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-cd boilerplate-v15
+cd nextjs-v15-boilerplate
 ```
 
 3. Install the dependencies:
