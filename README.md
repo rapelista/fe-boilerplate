@@ -30,7 +30,7 @@ git clone https://github.com/developergamatecha/frontend-boilerplate.git
 2. Navigate to the project directory:
 
 ```bash
-cd nextjs-v15-boilerplate
+cd frontend-boilerplate
 ```
 
 3. Install the dependencies:
