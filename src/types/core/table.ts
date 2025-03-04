@@ -1,4 +1,4 @@
-import { ButtonProps } from '@mantine/core';
+import { ButtonProps, ModalProps } from '@mantine/core';
 import { LinkProps } from 'next/link';
 
 /**
@@ -12,8 +12,11 @@ export interface ActionProps {
 /**
  * Action button props.
  */
+
 export interface ActionButtonProps extends ActionProps, ButtonProps {
   type: 'modal';
+  modal: string;
+  modalProps?: Omit<ModalProps, 'opened' | 'onClose'>;
 }
 
 /**
