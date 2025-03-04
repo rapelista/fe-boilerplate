@@ -14,6 +14,7 @@ export default {
   args: {
     messages: {
       empty: 'No users found. Maybe you should create one',
+      error: 'An error occured!',
     },
     context: 'users',
     columns: [
@@ -113,11 +114,7 @@ export const FullFeature: Story = {
 };
 
 export const WhenError: Story = {
-  args: {
-    messages: {
-      error: 'An error occured! Maybe you should refresh this page',
-    },
-  },
+  tags: ['!autodocs'],
   parameters: { msw: { handlers: [DATA_TABLE_ERROR_MOCK] } },
   decorators: [
     (Story) => (
