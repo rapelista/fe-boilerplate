@@ -12,7 +12,6 @@ import { WithMantine } from '../stories/decorators/mantine';
 initialize();
 
 const preview: Preview = {
-  tags: ['autodocs'],
   parameters: {
     controls: {
       matchers: {

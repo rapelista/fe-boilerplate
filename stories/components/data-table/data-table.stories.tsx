@@ -2,11 +2,12 @@ import { Container } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
 import { IconEye, IconPencil } from '@tabler/icons-react';
 import { DataTable } from '~/components/core/data-table';
-import { WithReactQuery } from '../decorators/query';
+import { WithReactQuery } from '../../decorators/query';
 import { DATA_TABLE_MOCK } from './data-table.mock';
 import { UserModal, UserViewModal } from './data-table.modals';
 
 export default {
+  tags: ['autodocs'],
   title: 'Components/Data Table',
   component: DataTable,
   parameters: { msw: { handlers: [DATA_TABLE_MOCK] } },

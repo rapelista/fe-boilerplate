@@ -1,8 +1,7 @@
 import { http, HttpResponse } from 'msw';
-import { paginationSchema } from '../utils/validation';
-
 import { delay } from '~/utils/core/misc';
 import { faker } from '~/utils/faker';
+import { paginationSchema } from '../../utils/validation';
 
 const users = Array.from({ length: 100 }).map((_, i) => ({
   id: i + 1,
