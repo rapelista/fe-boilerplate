@@ -17,12 +17,15 @@ export interface DataTableProps<T>
   withPagination?: boolean;
   withLimitation?: boolean;
   withSearch?: boolean;
+  topSection?: React.ReactNode;
+  bottomSection?: React.ReactNode;
 }
 
 export interface DataTableComponentProps {
   paginationProps?: DataTablePaginationProps;
   limitationProps?: DataTableLimitationProps;
   searchProps?: DataTableSearchProps;
+  topSectionProps?: GroupProps;
   bottomSectionProps?: GroupProps;
 }
 
@@ -33,6 +36,8 @@ export function DataTable<T extends EntityType>({
   withPagination = false,
   withLimitation = false,
   withSearch = false,
+  topSection,
+  bottomSection,
 
   /**
    * Componenet Props
@@ -40,6 +45,7 @@ export function DataTable<T extends EntityType>({
   paginationProps,
   limitationProps,
   searchProps,
+  topSectionProps,
   bottomSectionProps,
 
   modals,
@@ -56,7 +62,11 @@ export function DataTable<T extends EntityType>({
           {/**
            * Top Section
            */}
-          <Group>{withSearch && <DataTableSearch {...searchProps} />}</Group>
+          <Group {...topSectionProps}>
+            {topSection}
+
+            {withSearch && <DataTableSearch {...searchProps} />}
+          </Group>
 
           {/**
            * Main Table Section
@@ -68,7 +78,10 @@ export function DataTable<T extends EntityType>({
            */}
           <Group {...bottomSectionProps}>
             {withPagination && <DataTablePagination {...paginationProps} />}
+
             {withLimitation && <DataTableLimitation {...limitationProps} />}
+
+            {bottomSection}
           </Group>
         </Stack>
       </DataTableProvider>
