@@ -24,7 +24,7 @@ quickly and efficiently.
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/rapelista/nextjs-v15-boilerplate.git
+git clone https://github.com/developergamatecha/frontend-boilerplate.git
 ```
 
 2. Navigate to the project directory:
