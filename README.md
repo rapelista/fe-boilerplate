@@ -41,6 +41,8 @@ npm install
 pnpm install
 ```
 
+4. Copy `.env.development.example` to `.env.development`
+
 ### Running the Development Server
 
 ```bash
