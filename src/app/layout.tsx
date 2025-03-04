@@ -1,7 +1,7 @@
 import '~/styles/globals.css';
 
 import '@mantine/core/styles.css';
-import '@mantine/modals/styles.css';
+import '@mantine/notifications/styles.css';
 
 import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
 import { Providers } from '~/components/providers';
