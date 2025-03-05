@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { IconEye, IconPencil } from '@tabler/icons-react';
 import { DataTable } from '~/components/core/data-table';
 import { WithReactQuery } from '../../decorators/query';
+import { DataTableFilter } from './data-table.filter';
 import { DATA_TABLE_ERROR_MOCK, DATA_TABLE_MOCK } from './data-table.mock';
 import { UserModal, UserViewModal } from './data-table.modals';
 
@@ -125,4 +126,10 @@ export const WhenError: Story = {
       </Stack>
     ),
   ],
+};
+
+export const WithCustomFilter: Story = {
+  args: {
+    topSection: <DataTableFilter />,
+  },
 };
