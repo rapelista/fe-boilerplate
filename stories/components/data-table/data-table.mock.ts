@@ -1,78 +1,57 @@
 import { http, HttpResponse } from 'msw';
 import { delay } from '~/utils/core/misc';
-import { faker } from '~/utils/faker';
+import { USERS } from '../../utils/data';
 import { paginationSchema } from '../../utils/validation';
 
-const users = Array.from({ length: 100 }).map((_, i) => ({
-  id: i + 1,
-  name: faker.person.fullName(),
-  age: faker.number.int({ min: 17, max: 100 }),
-}));
+const url = 'http://localhost:3000/api/v1/users';
 
-export const DATA_TABLE_ERROR_MOCK = http.get(
-  'http://localhost:3000/api/v1/users',
-  async () => {
-    await delay();
+export const DATA_TABLE_ERROR_MOCK = http.get(url, async () => {
+  await delay();
 
-    return HttpResponse.json(
-      {
-        type: 'client_error',
-        errors: [
-          {
-            code: 'not_authenticated',
-            detail: 'Authentication credentials not provided.',
-            attr: null,
-          },
-        ],
-        timestamp: new Date().toISOString(),
-      },
-      { status: 401 },
-    );
-  },
-);
+  const errors = [
+    {
+      code: 'not_authenticated',
+      detail: 'Authentication credentials not provided.',
+      attr: null,
+    },
+  ];
 
-export const DATA_TABLE_MOCK = http.get(
-  'http://localhost:3000/api/v1/users',
-  async ({ request }) => {
-    await delay();
+  return HttpResponse.json(
+    {
+      timestamp: new Date().toISOString(),
+      type: 'client_error',
+      errors,
+    },
+    { status: 401 },
+  );
+});
 
-    const url = new URL(request.url);
-    const params = Object.fromEntries(url.searchParams);
+export const DATA_TABLE_MOCK = http.get(url, async ({ request }) => {
+  await delay();
 
-    const { data: validated, error } = paginationSchema.safeParse(params);
+  const url = new URL(request.url);
+  const params = Object.fromEntries(url.searchParams);
 
-    if (error) {
-      return HttpResponse.json({ error: error.errors });
-    }
+  const { data: validated, error } = paginationSchema.safeParse(params);
 
-    const { page, limit, search } = validated;
+  if (error) {
+    return HttpResponse.json({ error: error.errors });
+  }
 
-    const data = users
-      .filter((user) => {
-        if (!search) return true;
-        return user.name.toLowerCase().includes(search.toLowerCase());
-      })
-      .slice((page - 1) * limit, page * limit);
+  const { page, limit, search } = validated;
 
-    const totalPage = Math.ceil(users.length / limit);
-    const totalData = users.length;
-    const meta = { page, totalPage, totalData };
+  const users = USERS.reverse();
 
-    return HttpResponse.json({ data, meta });
+  const filteredData = users.filter((user) => {
+    if (!search) return true;
+    return user.name.toLowerCase().includes(search.toLowerCase());
+  });
 
-    // return HttpResponse.json(
-    //   {
-    //     type: 'client_error',
-    //     errors: [
-    //       {
-    //         code: 'unauthorized',
-    //         message: 'Unauthorized',
-    //         attr: null,
-    //       },
-    //     ],
-    //     timestamp: new Date().toISOString(),
-    //   },
-    //   { status: 401 },
-    // );
-  },
-);
+  const data = filteredData.slice((page - 1) * limit, page * limit);
+
+  const totalPage = Math.ceil(filteredData.length / limit);
+  const totalData = filteredData.length;
+  const meta = { page, totalPage, totalData };
+
+  return HttpResponse.json({ data, meta });
+});
