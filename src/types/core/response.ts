@@ -10,3 +10,13 @@ export type PaginatedResponseType<T> = {
     totalData: number;
   };
 };
+
+export type ErrorResponseType = {
+  type: 'client_error' | 'server_error';
+  errors: {
+    code: string;
+    detail: string;
+    attr: string | null;
+  }[];
+  timestamp: string;
+};

@@ -3,6 +3,7 @@
 import { Group, GroupProps, Stack } from '@mantine/core';
 import { ModalsProvider, ModalsProviderProps } from '@mantine/modals';
 import { EntityType } from '~/types/core/entity';
+import { DataTableError } from './error';
 import { DataTableLimitation, DataTableLimitationProps } from './limitation';
 import { DataTablePagination, DataTablePaginationProps } from './pagination';
 import { DataTableProvider, DataTableProviderProps } from './provider';
@@ -84,6 +85,8 @@ export function DataTable<T extends EntityType>({
             {bottomSection}
           </Group>
         </Stack>
+
+        <DataTableError />
       </DataTableProvider>
     </ModalsProvider>
   );
