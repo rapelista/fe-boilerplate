@@ -24,8 +24,16 @@ import { DataTableSkeleton, DataTableSkeletonProps } from './skeleton';
 
 export interface DataTableUIProps<T>
   extends TableProps,
+    DataTableUIComponentProps,
     Pick<DataTableActionsProps<T>, 'actions'> {
   columns: ColumnDef<T>[];
+  messages?: {
+    empty?: string;
+    error?: string;
+  };
+}
+
+export interface DataTableUIComponentProps {
   skeletonProps?: DataTableSkeletonProps;
 }
 
@@ -33,10 +41,11 @@ export function DataTableUI<T extends EntityType>({
   columns: initialColumns = [],
   actions: initialActions = [],
   skeletonProps,
+  messages,
   ...props
 }: DataTableUIProps<T>) {
   const { context, params } = useDataTableContext();
-  const { data, isPending } = useFetchDataTable<T>(context, params);
+  const { data, isPending, isError } = useFetchDataTable<T>(context, params);
 
   const columns = useMemo(() => {
     if (initialActions.length > 0) {
@@ -89,10 +98,16 @@ export function DataTableUI<T extends EntityType>({
             rows={Number(params.limit)}
             {...skeletonProps}
           />
+        ) : isError ? (
+          <TableTr>
+            <TableTd h={100} ta="center" colSpan={columns.length}>
+              {messages?.error || 'An error occured'}
+            </TableTd>
+          </TableTr>
         ) : table.getRowModel().rows.length === 0 ? (
           <TableTr>
             <TableTd h={100} ta="center" colSpan={columns.length}>
-              No data available
+              {messages?.empty || 'No data available'}
             </TableTd>
           </TableTr>
         ) : (

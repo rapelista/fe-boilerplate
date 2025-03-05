@@ -1,41 +1,76 @@
 import { http, HttpResponse } from 'msw';
 import { delay } from '~/utils/core/misc';
-import { faker } from '~/utils/faker';
-import { paginationSchema } from '../../utils/validation';
+import { USERS } from '../../utils/data';
+import { usersParams } from '../../utils/validation';
 
-const users = Array.from({ length: 100 }).map((_, i) => ({
-  id: i + 1,
-  name: faker.person.fullName(),
-  age: faker.number.int({ min: 17, max: 100 }),
-}));
+const url = 'http://localhost:3000/api/v1/users';
 
-export const DATA_TABLE_MOCK = http.get(
-  'http://localhost:3000/api/v1/users',
-  async ({ request }) => {
-    await delay();
+export const DATA_TABLE_ERROR_MOCK = http.get(url, async () => {
+  await delay();
 
-    const url = new URL(request.url);
-    const params = Object.fromEntries(url.searchParams);
+  const errors = [
+    {
+      code: 'not_authenticated',
+      detail: 'Authentication credentials not provided.',
+      attr: null,
+    },
+  ];
 
-    const { data: validated, error } = paginationSchema.safeParse(params);
+  return HttpResponse.json(
+    {
+      timestamp: new Date().toISOString(),
+      type: 'client_error',
+      errors,
+    },
+    { status: 401 },
+  );
+});
 
-    if (error) {
-      return HttpResponse.json({ error: error.errors });
-    }
+export const DATA_TABLE_MOCK = http.get(url, async ({ request }) => {
+  await delay();
 
-    const { page, limit, search } = validated;
+  const url = new URL(request.url);
+  const params = Object.fromEntries(url.searchParams);
 
-    const data = users
-      .filter((user) => {
-        if (!search) return true;
-        return user.name.toLowerCase().includes(search.toLowerCase());
-      })
-      .slice((page - 1) * limit, page * limit);
+  const { data: validated, error } = usersParams.safeParse(params);
 
-    const totalPage = Math.ceil(users.length / limit);
-    const totalData = users.length;
-    const meta = { page, totalPage, totalData };
+  if (error) {
+    return HttpResponse.json(
+      {
+        type: 'client_error',
+        errors: error.errors.map((error) => ({
+          detail: error.message,
+          attr: error.path.join(','),
+          code: error.code,
+        })),
+        timestamp: new Date().toISOString(),
+      },
+      {
+        status: 400,
+      },
+    );
+  }
 
-    return HttpResponse.json({ data, meta });
-  },
-);
+  const { page, limit, search, type } = validated;
+
+  const users = USERS.reverse();
+
+  const filteredData = users
+    .filter((user) => {
+      if (!search) return true;
+      return user.name.toLowerCase().includes(search.toLowerCase());
+    })
+    .filter((user) => {
+      if (type === 'young') return user.age < 30;
+      if (type === 'old') return user.age >= 30;
+      return true;
+    });
+
+  const data = filteredData.slice((page - 1) * limit, page * limit);
+
+  const totalPage = Math.ceil(filteredData.length / limit);
+  const totalData = filteredData.length;
+  const meta = { page, totalPage, totalData };
+
+  return HttpResponse.json({ data, meta });
+});

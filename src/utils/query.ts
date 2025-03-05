@@ -10,13 +10,16 @@ function makeQueryClient() {
     defaultOptions: {
       queries: {
         staleTime: 60 * 1000,
-        queryFn: async ({ queryKey }) => {
+        queryFn: async ({ queryKey, signal }) => {
           const [context, params] = queryKey as [
             string,
             ParamsType | undefined,
           ];
 
-          return await request(generateUrl(context, params));
+          return await request(generateUrl(context, params), {
+            signal,
+            withAuth: true,
+          });
         },
       },
     },

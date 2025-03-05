@@ -13,7 +13,10 @@ export function useFetchDataTable<T extends EntityType>(
     isPending,
     isFetching,
     isPlaceholderData,
+    isError,
+    error,
   } = useQuery<PaginatedResponseType<T>>({
+    retry: false,
     queryKey: [context, params],
     placeholderData: keepPreviousData,
   });
@@ -26,5 +29,13 @@ export function useFetchDataTable<T extends EntityType>(
     return response?.meta;
   }, [response]);
 
-  return { data, meta, isPending, isFetching, isPlaceholderData };
+  return {
+    data,
+    meta,
+    error,
+    isPending,
+    isFetching,
+    isPlaceholderData,
+    isError,
+  };
 }
