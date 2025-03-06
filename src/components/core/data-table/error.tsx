@@ -1,9 +1,9 @@
 import { notifications } from '@mantine/notifications';
 import { useEffect } from 'react';
 import { ErrorResponseType } from '~/types/core/response';
+import { useFetchPaginatedData } from '../hooks';
 import { toast } from '../toast';
 import { useDataTableContext } from './context';
-import { useFetchDataTable } from './hooks';
 
 const toastConfig = {
   title: 'An error occured!',
@@ -13,7 +13,7 @@ const toastConfig = {
 export function DataTableError() {
   const { context, params } = useDataTableContext();
 
-  const { error } = useFetchDataTable(context, params);
+  const { error } = useFetchPaginatedData(context, params);
 
   useEffect(() => {
     if (error) {
