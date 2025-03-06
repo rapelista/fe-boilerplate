@@ -17,9 +17,9 @@ import {
 } from '@tanstack/react-table';
 import { useMemo } from 'react';
 import { EntityType } from '~/types/core/entity';
+import { useFetchPaginatedData } from '../hooks';
 import { DataTableActions, DataTableActionsProps } from './actions';
 import { useDataTableContext } from './context';
-import { useFetchDataTable } from './hooks';
 import { DataTableSkeleton, DataTableSkeletonProps } from './skeleton';
 
 export interface DataTableUIProps<T>
@@ -45,7 +45,10 @@ export function DataTableUI<T extends EntityType>({
   ...props
 }: DataTableUIProps<T>) {
   const { context, params } = useDataTableContext();
-  const { data, isPending, isError } = useFetchDataTable<T>(context, params);
+  const { data, isPending, isError } = useFetchPaginatedData<T>(
+    context,
+    params,
+  );
 
   const columns = useMemo(() => {
     if (initialActions.length > 0) {
