@@ -11,14 +11,15 @@ function makeQueryClient() {
       queries: {
         staleTime: 60 * 1000,
         queryFn: async ({ queryKey, signal }) => {
-          const [context, params] = queryKey as [
+          const [context, params, withAuth] = queryKey as [
             string,
             ParamsType | undefined,
+            boolean | undefined,
           ];
 
           return await request(generateUrl(context, params), {
             signal,
-            withAuth: true,
+            withAuth: typeof withAuth === 'boolean' ? withAuth : true,
           });
         },
       },

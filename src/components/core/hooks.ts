@@ -14,8 +14,18 @@ export function useFetchPaginatedData<
 >(
   context: string,
   params?: ParamsType,
-  options?: Partial<UndefinedInitialDataOptions<P>>,
+  options?: Partial<
+    UndefinedInitialDataOptions<P> & {
+      withAuth?: boolean;
+    }
+  >,
 ) {
+  const withAuth = options?.withAuth;
+  const queryKey =
+    typeof withAuth === 'boolean'
+      ? [context, params, withAuth]
+      : [context, params];
+
   const {
     data: response,
     isPending,
@@ -24,8 +34,8 @@ export function useFetchPaginatedData<
     isError,
     error,
   } = useQuery<P>({
+    queryKey,
     retry: false,
-    queryKey: [context, params],
     placeholderData: keepPreviousData,
     ...options,
   });

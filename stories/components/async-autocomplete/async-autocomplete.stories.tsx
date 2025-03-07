@@ -34,3 +34,18 @@ export const Default: Story = {
     placeholder: 'Search for a product...',
   },
 };
+
+export const WithDefaultValue: Story = {
+  args: {
+    ...Default.args,
+    defaultValue: 101,
+    defaultRender: 'Buku',
+  },
+};
+
+export const Clearable: Story = {
+  args: {
+    ...Default.args,
+    clearable: true,
+  },
+};

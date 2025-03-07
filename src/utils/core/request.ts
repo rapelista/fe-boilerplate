@@ -12,6 +12,8 @@ export async function request(
     ...options,
   };
 
+  console.log(allOptions);
+
   const controller = new AbortController();
   const timeout = setTimeout(
     () => {

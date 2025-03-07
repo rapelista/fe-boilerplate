@@ -26,6 +26,7 @@ export interface DataTableUIProps<T>
   extends TableProps,
     DataTableUIComponentProps,
     Pick<DataTableActionsProps<T>, 'actions'> {
+  withAuth?: boolean;
   columns: ColumnDef<T>[];
   messages?: {
     empty?: string;
@@ -42,12 +43,14 @@ export function DataTableUI<T extends EntityType>({
   actions: initialActions = [],
   skeletonProps,
   messages,
+  withAuth,
   ...props
 }: DataTableUIProps<T>) {
   const { context, params } = useDataTableContext();
   const { data, isPending, isError } = useFetchPaginatedData<T>(
     context,
     params,
+    { withAuth },
   );
 
   const columns = useMemo(() => {
