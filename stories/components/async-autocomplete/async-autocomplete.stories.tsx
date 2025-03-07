@@ -2,6 +2,7 @@ import { Container } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
 import { AsyncAutocomplete } from '~/components/core/async-autocomplete';
 import { WithReactQuery } from '../../decorators/query';
+import { AsyncAutocompleteControlled } from './async-autocomplete.controlled';
 import { ASYNC_AUTOCOMPLETE_MOCK } from './async-autocomplete.mock';
 
 export default {
@@ -48,4 +49,8 @@ export const Clearable: Story = {
     ...Default.args,
     clearable: true,
   },
+};
+
+export const Controlled: Story = {
+  render: AsyncAutocompleteControlled,
 };

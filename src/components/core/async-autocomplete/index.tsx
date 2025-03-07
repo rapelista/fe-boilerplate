@@ -16,8 +16,9 @@ import { EntityType } from '~/types/core/entity';
 import { useFetchPaginatedData } from '../hooks';
 
 export interface AsyncAutocompleteProps<V, T>
-  extends AsyncAutocompleteComponentProps,
-    Omit<TextInputProps, 'defaultValue'> {
+  extends AsyncAutocompleteControlledProps<V>,
+    AsyncAutocompleteComponentProps,
+    Omit<TextInputProps, 'defaultValue' | 'value'> {
   context: string;
   valueKey?: keyof T;
   renderKey?: keyof T;
@@ -36,6 +37,13 @@ export interface AsyncAutocompleteProps<V, T>
 
 export interface AsyncAutocompleteComponentProps {
   comboboxProps?: ComboboxProps;
+}
+
+export interface AsyncAutocompleteControlledProps<V> {
+  value?: V;
+  searchValue?: string;
+  onValueChange?: (value: V | null) => void;
+  onSearchChange?: (search: string) => void;
 }
 
 export function AsyncAutocomplete<
@@ -66,18 +74,31 @@ export function AsyncAutocomplete<
    * TextInputProps.
    */
   rightSection,
+
+  /**
+   * Controlled
+   */
+  value: controlledValue,
+  searchValue: controlledSearchValue,
+  onValueChange,
+  onSearchChange,
+
   ...props
 }: AsyncAutocompleteProps<V, T>) {
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const [value, setValue] = useState<V | null>(defaultValue || null);
+
   const [search, setSearch] = useState(defaultRender || '');
 
-  const enabled = !!defaultRender || value === null;
+  const enabled =
+    !!controlledSearchValue ||
+    !!defaultRender ||
+    (controlledValue ?? value) === null;
 
   const { data, isFetching } = useFetchPaginatedData<T>(
     context,
-    { search },
+    { search: controlledSearchValue ?? search },
     { enabled, withAuth },
   );
 
@@ -96,19 +117,37 @@ export function AsyncAutocomplete<
       <Combobox.Option
         key={itemValue}
         value={itemValue}
-        active={itemValue === String(value)}
+        active={itemValue === String(controlledValue ?? value)}
       >
         <Group gap="xs">
-          {itemValue === String(value) && <CheckIcon size={12} />}
+          {itemValue === String(controlledValue ?? value) && (
+            <CheckIcon size={12} />
+          )}
           <span>{itemRender}</span>
         </Group>
       </Combobox.Option>
     );
   });
 
+  const updateSearch = (search: string) => {
+    if (onSearchChange) {
+      onSearchChange(search);
+    } else {
+      setSearch(search);
+    }
+  };
+
+  const updateValue = (value: V | null) => {
+    if (onValueChange) {
+      onValueChange(value);
+    } else {
+      setValue(value);
+    }
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.currentTarget.value);
-    setValue(null);
+    updateSearch(event.currentTarget.value);
+    updateValue(null);
 
     combobox.resetSelectedOption();
     combobox.openDropdown();
@@ -120,16 +159,17 @@ export function AsyncAutocomplete<
     );
 
     if (option) {
-      setValue(option[valueKey]);
-      setSearch(String(option[renderKey]));
+      updateSearch(String(option[renderKey]));
+      updateValue(option[valueKey]);
     }
 
     combobox.closeDropdown();
   };
 
   const handleReset = () => {
-    setValue(null);
-    setSearch('');
+    updateValue(null);
+    updateSearch('');
+
     inputRef.current?.focus();
   };
 
@@ -144,7 +184,7 @@ export function AsyncAutocomplete<
         <Combobox.Target>
           <TextInput
             ref={inputRef}
-            value={search}
+            value={controlledSearchValue ?? search}
             onChange={handleChange}
             onClick={() => combobox.openDropdown()}
             onFocus={() => combobox.openDropdown()}
@@ -156,7 +196,7 @@ export function AsyncAutocomplete<
                 <CloseButton
                   variant="transparent"
                   onClick={handleReset}
-                  display={value ? undefined : 'none'}
+                  display={(controlledValue ?? value) ? undefined : 'none'}
                 />
               ) : (
                 rightSection
