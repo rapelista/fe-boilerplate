@@ -1,3 +1,5 @@
+import { ApiError } from '~/utils/shared/errors';
+
 type OptionsType = RequestInit & {
   withAuth?: boolean;
   formData?: FormData;
@@ -54,7 +56,14 @@ export async function request(
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(JSON.stringify(data));
+    const error = new ApiError(
+      `[Request] Failed to fetch ${response.url}`,
+      response.status,
+    );
+
+    error.fromResponse(data);
+
+    throw error;
   } else {
     return data;
   }

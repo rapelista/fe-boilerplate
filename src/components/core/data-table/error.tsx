@@ -1,8 +1,11 @@
 import { notifications } from '@mantine/notifications';
 import { useEffect } from 'react';
-import { ErrorResponseType } from '~/types/core/response';
+
+import { ApiError } from '~/utils/shared/errors';
+
 import { useFetchPaginatedData } from '../hooks';
 import { toast } from '../toast';
+
 import { useDataTableContext } from './context';
 
 const toastConfig = {
@@ -17,19 +20,16 @@ export function DataTableError() {
 
   useEffect(() => {
     if (error) {
-      try {
-        const data: ErrorResponseType = JSON.parse(error.message);
-
-        data.errors.forEach((error) => {
+      if (error instanceof ApiError) {
+        error.errors.forEach((error) => {
           toast.error({
-            ...toastConfig,
             message: error.detail,
           });
         });
-      } catch (e) {
+      } else {
         toast.error({
           ...toastConfig,
-          message: (e as Error).message,
+          message: 'Terjadi kesalahan.',
         });
       }
     }

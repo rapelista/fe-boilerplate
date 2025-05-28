@@ -12,7 +12,9 @@ import {
   useCombobox,
 } from '@mantine/core';
 import { useRef, useState } from 'react';
+
 import { EntityType } from '~/types/core/entity';
+
 import { useFetchPaginatedData } from '../hooks';
 
 export interface AsyncAutocompleteProps<V, T>
@@ -116,8 +118,8 @@ export function AsyncAutocomplete<
     return (
       <Combobox.Option
         key={itemValue}
-        value={itemValue}
         active={itemValue === String(controlledValue ?? value)}
+        value={itemValue}
       >
         <Group gap="xs">
           {itemValue === String(controlledValue ?? value) && (
@@ -176,32 +178,32 @@ export function AsyncAutocomplete<
   const renderCombobox = () => {
     return (
       <Combobox
-        onOptionSubmit={handleOptionSubmit}
-        withinPortal={false}
         store={combobox}
+        withinPortal={false}
+        onOptionSubmit={handleOptionSubmit}
         {...comboboxProps}
       >
         <Combobox.Target>
           <TextInput
             ref={inputRef}
-            value={controlledSearchValue ?? search}
-            onChange={handleChange}
-            onClick={() => combobox.openDropdown()}
-            onFocus={() => combobox.openDropdown()}
-            onBlur={() => combobox.closeDropdown()}
             rightSection={
               loading ? (
                 <Loader size={18} />
               ) : clearable ? (
                 <CloseButton
+                  display={(controlledValue ?? value) ? undefined : 'none'}
                   variant="transparent"
                   onClick={handleReset}
-                  display={(controlledValue ?? value) ? undefined : 'none'}
                 />
               ) : (
                 rightSection
               )
             }
+            value={controlledSearchValue ?? search}
+            onBlur={() => combobox.closeDropdown()}
+            onChange={handleChange}
+            onClick={() => combobox.openDropdown()}
+            onFocus={() => combobox.openDropdown()}
             {...props}
           />
         </Combobox.Target>

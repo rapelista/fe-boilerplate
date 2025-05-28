@@ -1,5 +1,5 @@
 import { NotificationData, notifications } from '@mantine/notifications';
-import { IconCheck, IconExclamationMark } from '@tabler/icons-react';
+import { TbCheck, TbExclamationMark } from 'react-icons/tb';
 
 export interface ToastProps
   extends Omit<NotificationData, 'title' | 'message' | 'color' | 'icon'> {
@@ -16,7 +16,7 @@ function success({
     title,
     message,
     color: 'green',
-    icon: <IconCheck />,
+    icon: <TbCheck />,
     ...props,
   });
 }
@@ -30,7 +30,7 @@ function error({
     title,
     message,
     color: 'red',
-    icon: <IconExclamationMark />,
+    icon: <TbExclamationMark />,
     ...props,
   });
 }

@@ -16,8 +16,11 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { useMemo } from 'react';
+
 import { EntityType } from '~/types/core/entity';
+
 import { useFetchPaginatedData } from '../hooks';
+
 import { DataTableActions, DataTableActionsProps } from './actions';
 import { useDataTableContext } from './context';
 import { DataTableSkeleton, DataTableSkeletonProps } from './skeleton';
@@ -59,7 +62,7 @@ export function DataTableUI<T extends EntityType>({
         id: 'actions',
         header: 'Actions',
         cell: (props) => (
-          <DataTableActions row={props.row.original} actions={initialActions} />
+          <DataTableActions actions={initialActions} row={props.row.original} />
         ),
       });
     }
@@ -79,7 +82,7 @@ export function DataTableUI<T extends EntityType>({
   });
 
   return (
-    <Table layout="fixed" pos="relative" captionSide="top" {...props}>
+    <Table captionSide="top" layout="fixed" pos="relative" {...props}>
       <TableThead>
         {table.getHeaderGroups().map((group) => (
           <TableTr key={group.id}>
@@ -106,13 +109,13 @@ export function DataTableUI<T extends EntityType>({
           />
         ) : isError ? (
           <TableTr>
-            <TableTd h={100} ta="center" colSpan={columns.length}>
+            <TableTd colSpan={columns.length} h={100} ta="center">
               {messages?.error || 'An error occured'}
             </TableTd>
           </TableTr>
         ) : table.getRowModel().rows.length === 0 ? (
           <TableTr>
-            <TableTd h={100} ta="center" colSpan={columns.length}>
+            <TableTd colSpan={columns.length} h={100} ta="center">
               {messages?.empty || 'No data available'}
             </TableTd>
           </TableTr>

@@ -1,8 +1,11 @@
 import { Container, Stack, Text } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
-import { IconEye, IconPencil } from '@tabler/icons-react';
+import { TbEye, TbPencil } from 'react-icons/tb';
+
 import { DataTable } from '~/components/core/data-table';
+
 import { WithReactQuery } from '../../decorators/query';
+
 import { DataTableFilter } from './data-table.filter';
 import { DATA_TABLE_ERROR_MOCK, DATA_TABLE_MOCK } from './data-table.mock';
 import { UserModal, UserViewModal } from './data-table.modals';
@@ -84,7 +87,7 @@ export const WithActions: Story = {
       {
         type: 'modal',
         label: 'View',
-        leftSection: <IconEye />,
+        leftSection: <TbEye />,
         modal: 'user_view',
         modalProps: {
           title: 'View User',
@@ -93,7 +96,7 @@ export const WithActions: Story = {
       {
         type: 'modal',
         label: 'Edit',
-        leftSection: <IconPencil />,
+        leftSection: <TbPencil />,
         modal: 'user',
         modalProps: {
           title: 'Edit User',

@@ -1,5 +1,7 @@
 import { Pagination, PaginationProps } from '@mantine/core';
+
 import { useFetchPaginatedData } from '../hooks';
+
 import { useDataTableContext } from './context';
 
 export interface DataTablePaginationProps
@@ -14,9 +16,9 @@ export function DataTablePagination(props: DataTablePaginationProps) {
 
   return (
     <Pagination
+      total={meta?.totalPage || 1}
       value={currentPage}
       onChange={setPage}
-      total={meta?.totalPage || 1}
       {...props}
     />
   );

@@ -19,6 +19,8 @@ const eslintConfig = [
     'plugin:storybook/recommended',
   ),
   {
+    ignores: ['public/**'],
+
     rules: {
       'no-console': 'warn',
 

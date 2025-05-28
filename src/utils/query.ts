@@ -1,7 +1,9 @@
 'use client';
 
 import { isServer, QueryClient } from '@tanstack/react-query';
+
 import { ParamsType } from '~/types/core/uri';
+
 import { request } from './core/request';
 import { generateUrl } from './core/uri';
 
@@ -34,6 +36,7 @@ export function getQueryClient() {
     return makeQueryClient();
   } else {
     if (!browserQueryClient) browserQueryClient = makeQueryClient();
+
     return browserQueryClient;
   }
 }

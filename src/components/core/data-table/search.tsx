@@ -1,4 +1,5 @@
 import { TextInput, TextInputProps } from '@mantine/core';
+
 import { useDataTableContext } from './context';
 
 export interface DataTableSearchProps

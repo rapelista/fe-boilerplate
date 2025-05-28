@@ -1,6 +1,7 @@
 import { Button, Group, MantineProvider } from '@mantine/core';
 import { modals } from '@mantine/modals';
 import Link from 'next/link';
+
 import { ActionType } from '~/types/core/table';
 
 export interface DataTableActionsProps<T> {

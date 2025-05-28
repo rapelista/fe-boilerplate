@@ -8,12 +8,12 @@ export default function Page() {
         <Title>Boilerplate NextJS v15</Title>
 
         <Text
-          component={Link}
-          href="https://github.com/developergamatecha/frontend-boilerplate?tab=readme-ov-file#boilerplate-v15"
           c="primary"
+          component={Link}
           fw={600}
-          td="underline"
+          href="https://github.com/developergamatecha/frontend-boilerplate?tab=readme-ov-file#boilerplate-v15"
           style={{ textUnderlineOffset: 2 }}
+          td="underline"
         >
           Read Documentation
         </Text>

@@ -1,5 +1,7 @@
 import { Select, SelectProps } from '@mantine/core';
+
 import { defaultLimitOptions } from '~/utils/core/data-table';
+
 import { useDataTableContext } from './context';
 
 export interface DataTableLimitationProps
@@ -17,6 +19,7 @@ export function DataTableLimitation({
   const setLimit = (limit: null | string) => {
     if (limit) {
       const numericLimit = Number(limit);
+
       if (!isNaN(numericLimit) && numericLimit > 0) {
         updateParam('limit', numericLimit);
       }
