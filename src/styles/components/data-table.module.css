@@ -19,5 +19,9 @@
     tr {
       height: 2.75rem;
     }
+
+    td {
+      padding: var(--mantine-spacing-xs);
+    }
   }
 }

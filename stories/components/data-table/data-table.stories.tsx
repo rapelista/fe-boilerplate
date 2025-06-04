@@ -1,6 +1,6 @@
 import { Container, Stack, Text } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
-import { TbEye, TbPencil } from 'react-icons/tb';
+import { TbEye, TbPencil, TbTrash } from 'react-icons/tb';
 
 import { DataTable } from '~/components/core/data-table';
 
@@ -102,11 +102,44 @@ export const WithActions: Story = {
           title: 'Edit User',
         },
       },
+      // {
+      //   type: 'link',
+      //   label: 'Overview',
+      //   href: '/users/[id]',
+      //   leftSection: <TbEye />,
+      // },
       {
-        type: 'link',
-        label: 'Overview',
-        href: '/users/[id]',
-        leftSection: <TbEye />,
+        type: 'composite',
+        actions: [
+          {
+            type: 'modal',
+            label: 'Edit',
+            modal: 'user',
+            leftSection: <TbPencil />,
+            modalProps: {
+              title: 'Edit User from Composite',
+            },
+          },
+          {
+            type: 'divider',
+          },
+          {
+            type: 'link',
+            label: 'Delete',
+            href: '/users/[id]',
+            color: 'red',
+            leftSection: <TbTrash />,
+          },
+        ],
+        main: {
+          leftSection: <TbEye />,
+          label: 'View',
+          type: 'modal',
+          modal: 'user_view',
+          modalProps: {
+            title: 'View User from Composite',
+          },
+        },
       },
     ],
   },

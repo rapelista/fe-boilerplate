@@ -1,5 +1,6 @@
 import { Button, Code, Group, Stack, Title } from '@mantine/core';
 import { ContextModalProps, modals } from '@mantine/modals';
+
 import { EntityType } from '~/types/core/entity';
 
 export function UserModal({ id, innerProps }: ContextModalProps) {
