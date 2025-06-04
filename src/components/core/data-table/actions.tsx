@@ -3,6 +3,10 @@ import { modals } from '@mantine/modals';
 import Link from 'next/link';
 
 import { ActionType } from '~/types/core/table';
+import {
+  extractParamsFromPath,
+  replaceParamsInPath,
+} from '~/utils/core/parser';
 
 export interface DataTableActionsProps<T> {
   actions?: ActionType[];
@@ -35,10 +39,13 @@ export function DataTableActions<T>({
     }
 
     if (action.type === 'link') {
-      const { type: _t, label, ...props } = action;
+      const { type: _t, label, href, ...props } = action;
+
+      const keys = extractParamsFromPath(href.toString());
+      const link = replaceParamsInPath(href.toString(), keys, row);
 
       return (
-        <Button key={key} component={Link} {...props}>
+        <Button key={key} component={Link} href={link} {...props}>
           {label}
         </Button>
       );
@@ -59,7 +66,7 @@ export function DataTableActions<T>({
         },
       }}
     >
-      <Group>{actions?.map(renderActions)}</Group>
+      <Group gap="xs">{actions?.map(renderActions)}</Group>
     </MantineProvider>
   );
 }

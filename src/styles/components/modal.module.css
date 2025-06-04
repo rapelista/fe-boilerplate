@@ -1,0 +1,9 @@
+.title {
+  font-size: large;
+  font-weight: bold;
+  font-family: var(--mantine-font-family-headings);
+}
+
+.content {
+  padding: 0.5rem;
+}

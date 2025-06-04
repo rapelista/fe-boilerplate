@@ -102,6 +102,12 @@ export const WithActions: Story = {
           title: 'Edit User',
         },
       },
+      {
+        type: 'link',
+        label: 'Overview',
+        href: '/users/[id]',
+        leftSection: <TbEye />,
+      },
     ],
   },
 };
