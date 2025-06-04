@@ -13,8 +13,8 @@ export interface ProvidersProps extends React.PropsWithChildren {
 }
 
 export function Providers({
-  withQueryDevtools = true,
   children,
+  withQueryDevtools = true,
 }: ProvidersProps) {
   const client = getQueryClient();
 

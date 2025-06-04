@@ -2,6 +2,8 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
+import pluginQuery from '@tanstack/eslint-plugin-query';
+import pluginPerfectionist from 'eslint-plugin-perfectionist';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -15,25 +17,51 @@ const eslintConfig = [
     'next/core-web-vitals',
     'next/typescript',
     'prettier',
-    'plugin:@tanstack/query/recommended',
     'plugin:storybook/recommended',
   ),
   {
-    ignores: ['public/**'],
-
+    plugins: {
+      '@tanstack/query': pluginQuery,
+    },
     rules: {
-      'no-console': 'warn',
-
-      'padding-line-between-statements': [
-        'warn',
-        { blankLine: 'always', prev: '*', next: 'return' },
-        { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+      '@tanstack/query/exhaustive-deps': 'error',
+    },
+  },
+  {
+    plugins: {
+      perfectionist: pluginPerfectionist,
+    },
+    rules: {
+      'perfectionist/sort-interfaces': ['error'],
+      'perfectionist/sort-objects': [
+        'error',
         {
-          blankLine: 'any',
-          prev: ['const', 'let', 'var'],
-          next: ['const', 'let', 'var'],
+          type: 'alphabetical',
         },
       ],
+    },
+    settings: {
+      perfectionist: {
+        partitionByComment: true,
+        type: 'line-length',
+      },
+    },
+  },
+  {
+    rules: {
+      '@typescript-eslint/no-empty-object-type': 'off',
+
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
+  {
+    rules: {
       'import/order': [
         'warn',
         {
@@ -47,48 +75,65 @@ const eslintConfig = [
             'sibling',
             'index',
           ],
+          'newlines-between': 'always',
           pathGroups: [
             {
-              pattern: '~/**',
               group: 'external',
+              pattern: '~/**',
               position: 'after',
             },
           ],
-          'newlines-between': 'always',
+        },
+      ],
+    },
+  },
+  {
+    rules: {
+      'no-console': 'warn',
+
+      'padding-line-between-statements': [
+        'warn',
+        {
+          blankLine: 'always',
+          next: 'return',
+          prev: '*',
+        },
+        {
+          blankLine: 'always',
+          next: '*',
+          prev: ['const', 'let', 'var'],
+        },
+        {
+          blankLine: 'any',
+          next: ['const', 'let', 'var'],
+          prev: ['const', 'let', 'var'],
+        },
+      ],
+    },
+  },
+  {
+    rules: {
+      'react/jsx-curly-brace-presence': [
+        'warn',
+        {
+          children: 'never',
+          props: 'never',
         },
       ],
 
-      '@typescript-eslint/no-empty-object-type': 'off',
-
-      '@typescript-eslint/no-unused-vars': [
-        'error',
+      'react/jsx-sort-props': [
+        'warn',
         {
-          argsIgnorePattern: '^_',
-          varsIgnorePattern: '^_',
+          callbacksLast: true,
+          noSortAlphabetically: false,
+          reservedFirst: true,
+          shorthandFirst: true,
         },
       ],
 
       'react/react-in-jsx-scope': 'off',
 
       'react/self-closing-comp': 'warn',
-
-      'react/jsx-sort-props': [
-        'warn',
-        {
-          callbacksLast: true,
-          shorthandFirst: true,
-          noSortAlphabetically: false,
-          reservedFirst: true,
-        },
-      ],
-
-      'react/jsx-curly-brace-presence': [
-        'warn',
-        {
-          props: 'never',
-          children: 'never',
-        },
-      ],
     },
   },
 ];
