@@ -3,7 +3,6 @@ import { fileURLToPath } from 'url';
 
 import { FlatCompat } from '@eslint/eslintrc';
 import pluginQuery from '@tanstack/eslint-plugin-query';
-import pluginPerfectionist from 'eslint-plugin-perfectionist';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -25,26 +24,6 @@ const eslintConfig = [
     },
     rules: {
       '@tanstack/query/exhaustive-deps': 'error',
-    },
-  },
-  {
-    plugins: {
-      perfectionist: pluginPerfectionist,
-    },
-    rules: {
-      'perfectionist/sort-interfaces': ['error'],
-      'perfectionist/sort-objects': [
-        'error',
-        {
-          type: 'alphabetical',
-        },
-      ],
-    },
-    settings: {
-      perfectionist: {
-        partitionByComment: true,
-        type: 'line-length',
-      },
     },
   },
   {
