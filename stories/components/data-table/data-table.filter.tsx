@@ -1,4 +1,5 @@
 import { Group, Select } from '@mantine/core';
+
 import { useDataTableContext } from '~/components/core/data-table/context';
 
 const data = [

@@ -2,6 +2,7 @@
 
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import { getQueryClient } from '../utils/query';
 
 export interface ProvidersProps extends React.PropsWithChildren {}

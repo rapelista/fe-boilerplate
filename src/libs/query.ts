@@ -3,9 +3,8 @@
 import { isServer, QueryClient } from '@tanstack/react-query';
 
 import { ParamsType } from '~/types/core/uri';
-
-import { request } from './core/request';
-import { generateUrl } from './core/uri';
+import { request } from '~/utils/core/request';
+import { generateUrl } from '~/utils/core/uri';
 
 function makeQueryClient() {
   return new QueryClient({

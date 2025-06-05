@@ -1,5 +1,7 @@
 import { http, HttpResponse } from 'msw';
+
 import { delay } from '~/utils/core/misc';
+
 import { USERS } from '../../utils/data';
 import { usersParams } from '../../utils/validation';
 
@@ -58,11 +60,13 @@ export const DATA_TABLE_MOCK = http.get(url, async ({ request }) => {
   const filteredData = users
     .filter((user) => {
       if (!search) return true;
+
       return user.name.toLowerCase().includes(search.toLowerCase());
     })
     .filter((user) => {
       if (type === 'young') return user.age < 30;
       if (type === 'old') return user.age >= 30;
+
       return true;
     });
 

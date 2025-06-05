@@ -1,5 +1,7 @@
 import { http, HttpResponse } from 'msw';
+
 import { delay } from '~/utils/core/misc';
+
 import { PRODUCTS } from '../../utils/data';
 import { paginationSchema } from '../../utils/validation';
 
@@ -36,6 +38,7 @@ export const ASYNC_AUTOCOMPLETE_MOCK = http.get(
 
     const filteredData = products.filter((product) => {
       if (!search) return true;
+
       return product.name.toLowerCase().includes(search.toLowerCase());
     });
 

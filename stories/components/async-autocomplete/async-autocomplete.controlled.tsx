@@ -1,5 +1,6 @@
 import { Stack, Text } from '@mantine/core';
 import { useState } from 'react';
+
 import { AsyncAutocomplete } from '~/components/core/async-autocomplete';
 
 export function AsyncAutocompleteControlled() {
@@ -9,14 +10,14 @@ export function AsyncAutocompleteControlled() {
   return (
     <Stack>
       <AsyncAutocomplete
+        clearable
+        context="products"
         label="Product"
         placeholder="Search for a product..."
-        context="products"
-        value={value}
-        onValueChange={setValue}
         searchValue={searchValue}
+        value={value}
         onSearchChange={setSearchValue}
-        clearable
+        onValueChange={setValue}
       />
 
       <Text fz="sm">value: {JSON.stringify(value)}</Text>

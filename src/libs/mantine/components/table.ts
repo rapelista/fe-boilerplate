@@ -1,6 +1,6 @@
 import { createTheme, Table } from '@mantine/core';
 
-import classes from '~/styles/components/data-table.module.css';
+import classes from '~/styles/mantine/table.module.css';
 
 export const themeTable = createTheme({
   components: {

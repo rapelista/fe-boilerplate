@@ -1,4 +1,4 @@
-import { faker } from '~/utils/faker';
+import { faker } from '~/libs/faker';
 
 export const USERS = Array.from({ length: 100 }).map((_, i) => ({
   id: i + 1,

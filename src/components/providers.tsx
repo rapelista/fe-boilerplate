@@ -5,8 +5,8 @@ import { Notifications } from '@mantine/notifications';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
-import { theme } from '~/utils/mantine';
-import { getQueryClient } from '~/utils/query';
+import { theme } from '~/libs/mantine';
+import { getQueryClient } from '~/libs/query';
 
 export interface ProvidersProps extends React.PropsWithChildren {
   withQueryDevtools?: boolean;

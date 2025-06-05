@@ -1,7 +1,10 @@
 import { Container } from '@mantine/core';
 import { Meta, StoryObj } from '@storybook/react';
+
 import { AsyncAutocomplete } from '~/components/core/async-autocomplete';
+
 import { WithReactQuery } from '../../decorators/query';
+
 import { AsyncAutocompleteControlled } from './async-autocomplete.controlled';
 import { ASYNC_AUTOCOMPLETE_MOCK } from './async-autocomplete.mock';
 
