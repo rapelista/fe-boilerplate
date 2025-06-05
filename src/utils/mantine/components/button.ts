@@ -11,7 +11,7 @@ export const themeButton = createTheme({
         if (props.size === 'sm') {
           return {
             root: {
-              '--button-height': '40px',
+              '--button-height': 'var(--custom-button-height)',
             },
           };
         }

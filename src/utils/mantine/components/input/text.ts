@@ -11,8 +11,8 @@ export const themeTextInput = createTheme({
         if (props.size === 'sm') {
           return {
             input: {
-              '--input-height': '40px',
-              '--input-size': '40px',
+              '--input-size': 'var(--custom-input-height)',
+              '--input-height': 'var(--custom-input-height)',
             },
           };
         }

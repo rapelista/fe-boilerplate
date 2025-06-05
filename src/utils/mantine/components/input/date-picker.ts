@@ -14,8 +14,8 @@ export const themeDatePickerInput = createTheme({
         if (props.size === 'sm') {
           return {
             input: {
-              '--input-height': '40px',
-              '--input-size': '40px',
+              '--input-height': 'var(--custom-input-height)',
+              '--input-size': 'var(--custom-input-height)',
             },
           };
         }

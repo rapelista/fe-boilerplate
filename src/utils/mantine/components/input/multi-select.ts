@@ -13,8 +13,8 @@ export const themeMultiSelect = createTheme({
         if (props.size === 'sm') {
           return {
             input: {
-              '--input-height': '40px',
-              '--input-padding-y': '7.8px',
+              '--input-height': 'var(--custom-input-height)',
+              '--input-padding-y': 'var(--custom-input-padding-y)',
             },
           };
         }

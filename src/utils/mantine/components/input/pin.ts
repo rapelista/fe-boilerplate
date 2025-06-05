@@ -12,10 +12,11 @@ export const themePinInput = createTheme({
           return {
             root: {},
             input: {
-              '--input-height': '40px',
+              '--input-height': 'var(--custom-input-height)',
+              '--input-size': 'var(--custom-input-height)',
             },
             wrapper: {
-              '--pin-input-size': '40px',
+              '--pin-input-size': 'var(--custom-input-height)',
             },
           };
         }
