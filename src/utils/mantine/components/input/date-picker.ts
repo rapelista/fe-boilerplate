@@ -1,10 +1,12 @@
 import { createTheme } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
+import { TbCalendar } from 'react-icons/tb';
 
 export const themeDatePickerInput = createTheme({
   components: {
     DatePickerInput: DatePickerInput.extend({
       defaultProps: {
+        rightSection: TbCalendar({}),
         size: 'sm',
       },
 
