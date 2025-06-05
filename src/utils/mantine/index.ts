@@ -1,8 +1,6 @@
 import { mergeThemeOverrides } from '@mantine/core';
 
 import { themeColors } from './colors';
-import { themeButton } from './components/button';
-import { themeInput } from './components/input';
 import { themeModal } from './components/modal';
 import { themeSelect } from './components/select';
 import { themeTable } from './components/table';
@@ -17,6 +15,4 @@ export const theme = mergeThemeOverrides(
   themeSelect,
   themeTable,
   themeModal,
-  themeInput,
-  themeButton,
 );
