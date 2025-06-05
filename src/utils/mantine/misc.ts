@@ -1,5 +1,7 @@
 import { createTheme } from '@mantine/core';
 
+import classes from '~/styles/mantine/index.module.css';
+
 export const themeMisc = createTheme({
-  // defaultRadius: 8,
+  activeClassName: classes.active,
 });

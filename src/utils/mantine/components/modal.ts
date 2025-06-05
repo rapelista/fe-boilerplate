@@ -1,6 +1,6 @@
 import { createTheme, Modal } from '@mantine/core';
 
-import classNames from '~/styles/components/modal.module.css';
+import classNames from '~/styles/mantine/modal.module.css';
 
 export const themeModal = createTheme({
   components: {

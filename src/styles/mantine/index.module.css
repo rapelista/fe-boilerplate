@@ -1,0 +1,5 @@
+.active {
+  &:not([data-freeze='true']):active {
+    transform: scale(0.99, 0.9875);
+  }
+}
