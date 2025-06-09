@@ -6,6 +6,7 @@ import { themeDatePickerInput } from './components/input/date-picker';
 import { themeFileInput } from './components/input/file';
 import { themeMultiSelect } from './components/input/multi-select';
 import { themeNumberInput } from './components/input/number';
+import { themePasswordInput } from './components/input/password';
 import { themePinInput } from './components/input/pin';
 import { themeSelect } from './components/input/select';
 import { themeTextInput } from './components/input/text';
@@ -30,4 +31,5 @@ export const theme = mergeThemeOverrides(
   themeNumberInput,
   themePinInput,
   themeFileInput,
+  themePasswordInput,
 );
