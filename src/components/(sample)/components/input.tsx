@@ -11,6 +11,8 @@ import {
 } from '@mantine/core';
 import { DatePickerInput } from '@mantine/dates';
 
+import { PhoneNumberInput } from '~/components/core/phone-number';
+
 export function SampleInputComponent() {
   return (
     <SimpleGrid cols={2}>
@@ -51,6 +53,8 @@ export function SampleInputComponent() {
       </Box>
 
       <FileInput label="Document" placeholder="Document" />
+
+      <PhoneNumberInput label="Phone Number" />
     </SimpleGrid>
   );
 }
