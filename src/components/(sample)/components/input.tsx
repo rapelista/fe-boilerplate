@@ -18,7 +18,7 @@ export function SampleInputComponent() {
     <SimpleGrid cols={2}>
       <TextInput label="Email" placeholder="Email" />
 
-      <TextInput label="Phone" placeholder="Phone" type="tel" />
+      <PhoneNumberInput label="Phone Number" placeholder="xxx" />
 
       <DatePickerInput
         allowSingleDateInRange
@@ -53,8 +53,6 @@ export function SampleInputComponent() {
       </Box>
 
       <FileInput label="Document" placeholder="Document" />
-
-      <PhoneNumberInput label="Phone Number" />
     </SimpleGrid>
   );
 }
