@@ -51,9 +51,6 @@ importers:
       react-icons:
         specifier: ^5.5.0
         version: 5.5.0(react@19.1.0)
-      react-imask:
-        specifier: ^7.6.1
-        version: 7.6.1(react@19.1.0)
       zod:
         specifier: ^3.25.32
         version: 3.25.32
@@ -717,10 +714,6 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
-
-  '@babel/runtime-corejs3@7.27.6':
-    resolution: {integrity: sha512-vDVrlmRAY8z9Ul/HxT+8ceAru95LQgkSKiXkSYZvqtbkPSfhZJgpRp45Cldbh1GJ1kxzQkI70AqyrTI58KpaWQ==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.26.9':
     resolution: {integrity: sha512-aA63XwOkcl4xxQa3HjPMqOP6LiK0ZDv3mUPYEFXkpHbaFjtGggE1A61FjFzJnB+p7/oy2gA8E+rcBNl/zC1tMg==}
@@ -3273,10 +3266,6 @@ packages:
     engines: {node: '>=16.x'}
     hasBin: true
 
-  imask@7.6.1:
-    resolution: {integrity: sha512-sJlIFM7eathUEMChTh9Mrfw/IgiWgJqBKq2VNbyXvBZ7ev/IlO6/KQTKlV/Fm+viQMLrFLG/zCuudrLIwgK2dg==}
-    engines: {npm: '>=4.0.0'}
-
   import-fresh@3.3.1:
     resolution: {integrity: sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==}
     engines: {node: '>=6'}
@@ -4151,12 +4140,6 @@ packages:
     resolution: {integrity: sha512-MEFcXdkP3dLo8uumGI5xN3lDFNsRtrjbOEKDLD7yv76v4wpnEq2Lt2qeHaQOr34I/wPN3s3+N08WkQ+CW37Xiw==}
     peerDependencies:
       react: '*'
-
-  react-imask@7.6.1:
-    resolution: {integrity: sha512-vLNfzcCz62Yzx/GRGh5tiCph9Gbh2cZu+Tz8OiO5it2eNuuhpA0DWhhSlOtVtSJ80+Bx+vFK5De8eQ9AmbkXzA==}
-    engines: {npm: '>=4.0.0'}
-    peerDependencies:
-      react: '>=0.14.0'
 
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
@@ -5817,10 +5800,6 @@ snapshots:
       '@babel/plugin-transform-typescript': 7.26.8(@babel/core@7.26.9)
     transitivePeerDependencies:
       - supports-color
-
-  '@babel/runtime-corejs3@7.27.6':
-    dependencies:
-      core-js-pure: 3.40.0
 
   '@babel/runtime@7.26.9':
     dependencies:
@@ -8693,10 +8672,6 @@ snapshots:
     dependencies:
       queue: 6.0.2
 
-  imask@7.6.1:
-    dependencies:
-      '@babel/runtime-corejs3': 7.27.6
-
   import-fresh@3.3.1:
     dependencies:
       parent-module: 1.0.1
@@ -9601,12 +9576,6 @@ snapshots:
 
   react-icons@5.5.0(react@19.1.0):
     dependencies:
-      react: 19.1.0
-
-  react-imask@7.6.1(react@19.1.0):
-    dependencies:
-      imask: 7.6.1
-      prop-types: 15.8.1
       react: 19.1.0
 
   react-is@16.13.1: {}
