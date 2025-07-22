@@ -1,8 +1,8 @@
 import { Container, Divider, Stack, Title } from '@mantine/core';
 
-import { SampleButtonComponent } from '~/components/(sample)/components/button';
-import { SampleInputComponent } from '~/components/(sample)/components/input';
-import { SampleModalComponent } from '~/components/(sample)/components/modal';
+import { SampleButtonComponent } from '~/components/docs/components/button';
+import { SampleInputComponent } from '~/components/docs/components/input';
+import { SampleModalComponent } from '~/components/docs/components/modal';
 
 export default function Page() {
   return (
