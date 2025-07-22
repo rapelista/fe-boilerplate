@@ -3,7 +3,6 @@ import {
   UndefinedInitialDataOptions,
   useQuery,
 } from '@tanstack/react-query';
-import { useMemo } from 'react';
 
 import { EntityType } from '~/types/core/entity';
 import { PaginatedResponseType } from '~/types/core/response';
@@ -41,13 +40,8 @@ export function useFetchPaginatedData<
     ...options,
   });
 
-  const data = useMemo(() => {
-    return response ? response.data : [];
-  }, [response]);
-
-  const meta = useMemo(() => {
-    return response?.meta;
-  }, [response]);
+  const data = response ? response.data : [];
+  const meta = response?.meta;
 
   return {
     data,
