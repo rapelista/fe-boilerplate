@@ -28,6 +28,7 @@ export function useFetchPaginatedData<
 
   const {
     data: response,
+    isLoading,
     isPending,
     isFetching,
     isPlaceholderData,
@@ -47,6 +48,7 @@ export function useFetchPaginatedData<
     data,
     meta,
     error,
+    isLoading,
     isPending,
     isFetching,
     isPlaceholderData,
