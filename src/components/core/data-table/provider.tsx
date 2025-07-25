@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useContext, useState } from 'react';
 
 import { ParamsType, ParamValueType } from '~/types/core/uri';
 import { defaultParams } from '~/utils/core/data-table';
@@ -15,6 +15,8 @@ export function DataTableProvider({
   context,
   params: initialParams,
 }: DataTableProviderProps) {
+  const parentContext = useContext(DataTableContext);
+
   const [params, setParams] = useState({ ...defaultParams, ...initialParams });
 
   const updateParam = (key: string, value: ParamValueType) => {
@@ -23,11 +25,13 @@ export function DataTableProvider({
 
   return (
     <DataTableContext.Provider
-      value={{
-        context,
-        params,
-        updateParam,
-      }}
+      value={
+        parentContext || {
+          context,
+          params,
+          updateParam,
+        }
+      }
     >
       {children}
     </DataTableContext.Provider>
