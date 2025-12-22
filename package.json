@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "dotenv -e .env.development -- next dev --turbopack",
-    "build": "dotenv -e .env.production -- next build",
-    "start": "dotenv -e .env.production -- next start",
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
     "build:storybook": "storybook build",
